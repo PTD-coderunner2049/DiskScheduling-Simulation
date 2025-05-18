@@ -1,0 +1,131 @@
+/*Color theme*/
+:root {
+    --primary-white: white;
+    --secondary-teal: #148291;
+  }
+
+
+body {
+    display: flex; /* specify flex type of box for body*/
+    flex-direction: row;
+    justify-content: center; /* Centers horizontally */
+    align-items: flex-start;    /* Centers vertically */
+    min-height: 100vh;
+    margin: 0;
+    
+    /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR, monospace, 'Courier New', Courier, monospace*/
+    font-family: monospace;
+
+    background-image: url('https://cdn.discordapp.com/attachments/786825798119587911/1373642504594784407/3246590.jpg?ex=682b27c6&is=6829d646&hm=cbad6cac8a1ea806ae510fe5b050f8e1bd67d29bae5cb9cfb8810fd64d44a6b4&');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: fill;
+}
+/*This is css for the intro box */
+/*------------------------------------------------------------------------------------------------------*/
+.intro-block {
+    background-image: linear-gradient(to bottom, var(--primary-white), var(--secondary-teal));
+    width: 600px;
+    height: 800px;
+    padding: 10px;
+    margin-top: 50px;
+    border: 0px;
+    border-radius: 50px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
+}
+.intro-block h1 { /* Program header name styling */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 130px;
+    font-family: Polya Regular;
+
+    background: linear-gradient(to right, pink, purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.intro-block h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 15px;
+}
+.intro-block h5 {
+    margin-left: 30px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-family: Consolas;
+}
+.intro-block h6 {
+    color: white;
+    font-size: 18px;
+    
+    position: absolute;
+    left: 50%;
+    bottom: 2.5%;
+    transform: translateX(-50%); /* Move anchor from end to middle of the text for centering dynamically*/
+    margin: 0;
+}
+#intro-cooker-list {
+    list-style-type: none; /* Remove the default bullet */
+}
+#intro-cooker-list::before {
+    content: "\2605";      /* Unicode star (★) */
+    color: palevioletred;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    font-size: 1.5em;
+}
+
+/*css for the pending list*/
+/*------------------------------------------------------------------------------------------------------*/
+.Pending-request-list-container {
+    position: relative;/*so that its children can set pos relative to it*/
+    background-color: #a0e4e7;
+    height: 800px;
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 5px;
+    border: 0px;
+    border-radius: 50px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
+}/*body arrange comp in a row, this is the second one
+so its left is from the first div instead of left edge
+of the website*/
+.Pending-request-list-container h1 {
+    font-family: Consolas;
+    font-size: 25px;
+    margin-top: 15px;
+    text-align: center;
+    color: white;
+}
+.Pending-request-list-container #list {
+    position: absolute;
+    overflow-y: auto;
+    top: 7%;
+    left: 0;
+    width: 100%;
+    height: 93%;
+    text-align: center;
+    border-radius: 50px;
+    background-image: linear-gradient(to bottom, var(--primary-white), var(--secondary-teal));
+    box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.Pending-request-list-container #list li {
+    list-style-type: none; /* Remove default bullet points */
+    text-align: center;
+    width: 1.7em;          /* Adjust width based on content */
+    /* Or set a specific width if needed: width: 100px; */
+    font-size: 1.5em;
+    font-family: Consolas;
+    font-weight: bold;
+  
+    background: linear-gradient(to bottom, violet, white); /* Corrected color keyword */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 0.2em 0; /* Add some vertical padding for better spacing */
+  }
