@@ -1,10 +1,9 @@
 /*Color theme*/
+
 :root {
     --primary-white: white;
     --secondary-teal: #148291;
-  }
-
-
+}
 body {
     display: flex; /* specify flex type of box for body*/
     flex-direction: row;
@@ -66,18 +65,27 @@ body {
     transform: translateX(-50%); /* Move anchor from end to middle of the text for centering dynamically*/
     margin: 0;
 }
-#intro-cooker-list {
-    list-style-type: none; /* Remove the default bullet */
+#cooker-wrapper {
+    width: 100%;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 10px 0;
 }
-#intro-cooker-list::before {
-    content: "\2605";      /* Unicode star (★) */
-    color: palevioletred;
+#cooker {
     display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    font-size: 1.5em;
+    color: purple;
+    padding-left: 100%;
+    animation: scroll-left 15s linear infinite;
+    font-size: 15px;
+    font-weight: bold;
 }
-
+@keyframes scroll-left {
+    0% { transform: translateX(0%); /* X mean horizonetal, Y is vertical*/
+    }
+    100% { transform: translateX(-100%); }
+  }
 /*css for the pending list*/
 /*------------------------------------------------------------------------------------------------------*/
 .Pending-request-list-container {
@@ -116,16 +124,15 @@ of the website*/
 
 .Pending-request-list-container #list li {
     list-style-type: none; /* Remove default bullet points */
-    text-align: center;
     width: 1.7em;          /* Adjust width based on content */
     /* Or set a specific width if needed: width: 100px; */
     font-size: 1.5em;
     font-family: Consolas;
     font-weight: bold;
-  
-    background: linear-gradient(to bottom, violet, white); /* Corrected color keyword */
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    padding: 0.2em 0; /* Add some vertical padding for better spacing */
+    /*
+        background: linear-gradient(to bottom, violet, white);
+       -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding: 0.2em 0; /* Add some vertical padding for better spacing*/
   }
