@@ -1,0 +1,71 @@
+/*Color theme*/
+:root {
+    --primary-white: white;
+    --secondary-teal: #148291;
+}
+body {
+    display: flex; /* specify flex type of box for body*/
+    flex-direction: row;
+    justify-content: center; /* Centers horizontally */
+    align-items: flex-start;    /* Centers vertically */
+    min-height: 100vh;
+    margin: 0;
+    
+    /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR, monospace, 'Courier New', Courier, monospace*/
+    font-family: Consolas;
+
+    background-image: url('https://cdn.discordapp.com/attachments/786825798119587911/1373642504594784407/3246590.jpg?ex=682b27c6&is=6829d646&hm=cbad6cac8a1ea806ae510fe5b050f8e1bd67d29bae5cb9cfb8810fd64d44a6b4&');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: fill;
+}
+/*This is css for the intro box */
+/*------------------------------------------------------------------------------------------------------*/
+#intro-block {
+    /*background-image: linear-gradient(to bottom, var(--primary-white), var(--secondary-teal));*/
+    width: 100%;
+    height: 800px;
+    /*max-width: 1800px;*/
+    
+    margin: 50px 50px;
+    /*margin 4val: all side
+    margin 2 value: top/bottom & left/right
+    margin 4val: top & right/bottom & left
+    margin 4val: top & right & bottom & left*/
+    padding: 20px; /*spacing on all side*/
+
+    /*border: 0;*/
+    border-radius: 50px;
+    box-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+    box-sizing: border-box; /* padding doesn't exceed width */
+  }
+#caption { /* Program header name styling */
+    text-align: center;
+    margin: 0;
+
+    font-size: 130px;
+    font-family: Polya Regular;
+    background: linear-gradient(to right,purple,pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+#intro-footer{
+    position: absolute;
+    
+    color: aliceblue;
+    font-size: 18px;
+    opacity: 0.5;
+    left: 50%;
+    bottom: 2.5%;
+    transform: translateX(-50%); /* Move anchor from end to middle of the text for centering dynamically*/
+    margin: 0;
+    pointer-events: none; /*un-interactable */
+}
+#subcaption {
+    color: aliceblue;
+    text-align: center;
+    opacity: 0.5;
+    margin-top: 0;
+    font-size: 15px;
+}
