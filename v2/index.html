@@ -26,8 +26,19 @@
             <input type="'text" placeholder="I/O-request-queue">
         </div>
 
-        <div id="disk-size-input-zone">
+        <div id="algorithm-selector">
+            <input type="radio" name="algorithm-mode" value="FCFS" checked>
+            <input type="radio" name="algorithm-mode" value="SSTF">
+            <input type="radio" name="algorithm-mode" value="SCAN-up">
+            <input type="radio" name="algorithm-mode" value="SCAN-down">
+            <input type="radio" name="algorithm-mode" value="CSCAN-up">
+            <input type="radio" name="algorithm-mode" value="CSCAN-down">
         </div>
+
+        <div>
+            <button onclick="runSimulation()">Run simulation</button>
+        </div>
+
         <!-- Footer with hoasen name-->
         <h6 id="intro-footer">
             HoaSenUniversity
