@@ -10,7 +10,7 @@ body {
     align-items: flex-start;  /* vertically */
     min-height: 100vh;
     margin: 0;
-    /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR, monospace, 'Courier New', Courier, monospace*/
+    /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR,, 'Courier New', Courier, monospace*/
     font-family: Consolas;
 }
 body::before {/*shading bg, if doing this indside body, it affect other elements of body, so I move the bg here and filter color here too*/
@@ -78,7 +78,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
         letter-spacing 0.5s ease-in-out;
 }
 #intro-block:hover #caption {
-    transition-delay: 0.3s;
+    transition-delay: 0.2s;
     /*when website size is small, the border expand slower than caption, so I gave it delay*/
     letter-spacing: 50px;
     /* styles apply to #caption when #intro-block is hovered */
@@ -102,7 +102,12 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     margin: 0;
     pointer-events: none; /*un-interactable */
 }
-
+.onscreen-warning-message {
+    color: red;
+    font-size: 15;
+    font-family: ISOCTEUR;
+    font-weight: bold;
+}
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
 

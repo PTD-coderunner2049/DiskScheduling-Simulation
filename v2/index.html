@@ -19,15 +19,18 @@
         </h1>
 
         <div id="disk-track-capacity">
+            <p id="capacity-warning-message" class="onscreen-warning-message">capacity warning message</p> <!-- inline style cause I am lazy-->
             <input type="'text" placeholder="Disk's track capacity">
         </div>
 
         <div id="I/O-request-queue">
+            <p id="queue-warning-message" class="onscreen-warning-message">queue warning message</p> <!-- inline style cause I am lazy-->
             <input type="'text" placeholder="I/O-request-queue">
         </div>
 
         <div id="algorithm-selector">
-            <input type="radio" name="algorithm-mode" value="FCFS" checked>
+            <p id="capacity-warning-message" class="onscreen-warning-message">message plot</p> <!-- inline style cause I am lazy-->
+            <input type="radio" name="algorithm-mode" value="FCFS" checked> <!-- default option-->
             <input type="radio" name="algorithm-mode" value="SSTF">
             <input type="radio" name="algorithm-mode" value="SCAN-up">
             <input type="radio" name="algorithm-mode" value="SCAN-down">
