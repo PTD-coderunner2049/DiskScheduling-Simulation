@@ -6,18 +6,39 @@
 body {
     display: flex; /* specify flex type of box for body*/
     flex-direction: row;
-    justify-content: center; /* Centers horizontally */
-    align-items: flex-start;    /* Centers vertically */
+    justify-content: center; /* horizontally */
+    align-items: flex-start;  /* vertically */
     min-height: 100vh;
     margin: 0;
-    
     /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR, monospace, 'Courier New', Courier, monospace*/
     font-family: Consolas;
+}
+body::before {/*shading bg, if doing this indside body, it affect other elements of body, so I move the bg here and filter color here too*/
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
 
-    background-image: url('https://cdn.discordapp.com/attachments/786825798119587911/1373642504594784407/3246590.jpg?ex=682b27c6&is=6829d646&hm=cbad6cac8a1ea806ae510fe5b050f8e1bd67d29bae5cb9cfb8810fd64d44a6b4&');
+    background-image: url('https://media.discordapp.net/attachments/786825798119587911/1374681181160996936/3d-abstract-background-with-flowing-digital-particles.jpg?ex=682eef1d&is=682d9d9d&hm=5ce0950a6e42c741756bf46eaf67cc702633bc74990ceccf9f4e0ac8b7fc0016&=&format=webp&width=1363&height=960');
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: fill;
+    background-position: top center;
+    background-size: cover;
+
+    z-index: -1;
+    /*z-index controls the stacking order of elements.
+    Higher numbers appear on top, lower numbers appear underneath.*/
+    
+    animation: hueShift 10s linear infinite;
+}
+@keyframes hueShift {
+    0% {
+      filter: hue-rotate(-20deg);
+    }
+    50% {
+      filter: hue-rotate(30deg);
+    }
+    100% {
+      filter: hue-rotate(-20deg);
+    }
 }
 /*This is css for the intro box */
 /*------------------------------------------------------------------------------------------------------*/
@@ -26,7 +47,7 @@ body {
     width: 100%;
     height: 800px;
     /*max-width: 1800px;*/
-    
+
     margin: 50px 50px;
     /*margin 4val: all side
     margin 2 value: top/bottom & left/right
@@ -36,9 +57,14 @@ body {
 
     /*border: 0;*/
     border-radius: 50px;
-    box-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 150px rgba(0, 0, 0, 0);
     box-sizing: border-box; /* padding doesn't exceed width */
-  }
+   
+    transition: box-shadow 0.3s ease-in-out;
+}
+#intro-block:hover {
+    box-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
+}
 #caption { /* Program header name styling */
     text-align: center;
     margin: 0;
@@ -48,7 +74,7 @@ body {
     background: linear-gradient(to right,purple,pink);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: transparent; 
 }
 #intro-footer{
     position: absolute;
@@ -68,4 +94,6 @@ body {
     opacity: 0.5;
     margin-top: 0;
     font-size: 15px;
+    
+    pointer-events: none; /*un-interactable */
 }
