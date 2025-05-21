@@ -29,17 +29,6 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     
     animation: hueShift 10s linear infinite;
 }
-@keyframes hueShift {
-    0% {
-      filter: hue-rotate(-20deg);
-    }
-    50% {
-      filter: hue-rotate(30deg);
-    }
-    100% {
-      filter: hue-rotate(-20deg);
-    }
-}
 /*This is css for the intro box */
 /*------------------------------------------------------------------------------------------------------*/
 #intro-block {
@@ -48,6 +37,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     height: 800px;
     /*max-width: 1800px;*/
 
+    text-align: center;
     margin: 50px 50px;
     /*margin 4val: all side
     margin 2 value: top/bottom & left/right
@@ -66,15 +56,24 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     box-shadow: 0px 0px 150px rgba(0, 0, 0, 1);
 }
 #caption { /* Program header name styling */
-    text-align: center;
     margin: 0;
 
     font-size: 130px;
     font-family: Polya Regular;
-    background: linear-gradient(to right,purple,pink);
+    background: linear-gradient(to right,rgb(255, 102, 0),rgb(238, 255, 0));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent; 
+    animation: hueShift 10s linear infinite;
+
+}
+#subcaption {
+    color: aliceblue;
+    opacity: 0.5;
+    margin-top: 0;
+    font-size: 15px;
+    
+    pointer-events: none; /*un-interactable */
 }
 #intro-footer{
     position: absolute;
@@ -88,12 +87,18 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     margin: 0;
     pointer-events: none; /*un-interactable */
 }
-#subcaption {
-    color: aliceblue;
-    text-align: center;
-    opacity: 0.5;
-    margin-top: 0;
-    font-size: 15px;
-    
-    pointer-events: none; /*un-interactable */
+
+/*Animation list*/
+/*------------------------------------------------------------------------------------------------------*/
+
+@keyframes hueShift {
+    0% {
+      filter: hue-rotate(-20deg);
+    }
+    50% {
+      filter: hue-rotate(30deg);
+    }
+    100% {
+      filter: hue-rotate(-20deg);
+    }
 }
