@@ -32,15 +32,18 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
 /*This is css for the intro box */
 /*------------------------------------------------------------------------------------------------------*/
 #intro-block {
-    display: inline-block /* makes it shrink-wrap content */;
+    display: inline-flex /* makes it shrink-wrap content */;
     /*background-image: linear-gradient(to bottom, var(--primary-white), var(--secondary-teal));*/
     height: 850px;
     width: 30%;
     min-width: 600px;
-    text-align: center;
 
-    margin-top: 50px;
-    /*margin 4val: all side
+    text-align: center;
+    align-self: center; /* so I dont have to manually margin-top left right*/
+    flex-direction: column;
+
+    /*margin-top: 50px;
+    margin 4val: all side
     margin 2 vals: top/bottom & left/right
     margin 3 vals: top & right/bottom & left
     margin 4 vals: top & right & bottom & left*/
@@ -100,17 +103,37 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     bottom: 2.5%;
     transform: translateX(-50%); /* Move anchor from end to middle of the text for centering dynamically*/
     margin: 0;
-    pointer-events: none; /*un-interactable */
+    
+    pointer-events: none /*un-interactable */ !important;
 }
 .onscreen-warning-message {
     color: red;
     font-size: 15;
     font-family: ISOCTEUR;
     font-weight: bold;
+    z-index: 10;
+    
+    pointer-events: none;
 }
+/*------------------------------------------------------------------------------------------------------*/
+/*Radio algorithym styling, I will hid the original radio and use a label attached to each radio id
+then the label can act as click point for it and then style the label, radio seem tobe old and is not very
+customizable sadly.*/
+
+#algorithm-selector-radio {
+    display: inline-flex;
+    /* text-align: center; */
+    overflow: hidden;
+    width: fit-content;
+    align-self: center; /* stop this div from sticking it's left edge parent*/
+    justify-content: center; /*center children*/
+    
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+}
+
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
-
 @keyframes hueShift {
     0% {
       filter: hue-rotate(-20deg);

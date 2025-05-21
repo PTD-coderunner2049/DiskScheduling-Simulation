@@ -28,16 +28,22 @@
             <input type="'text" placeholder="I/O-request-queue">
         </div>
 
-        <div id="algorithm-selector">
-            <p id="capacity-warning-message" class="onscreen-warning-message">message plot</p> <!-- inline style cause I am lazy-->
-            <input type="radio" name="algorithm-mode" value="FCFS" checked> <!-- default option-->
-            <input type="radio" name="algorithm-mode" value="SSTF">
-            <input type="radio" name="algorithm-mode" value="SCAN-up">
-            <input type="radio" name="algorithm-mode" value="SCAN-down">
-            <input type="radio" name="algorithm-mode" value="CSCAN-up">
-            <input type="radio" name="algorithm-mode" value="CSCAN-down">
+        <p id="?????????" class="onscreen-warning-message">message plot</p> <!-- inline style cause I am lazy-->
+        <div id="algorithm-selector-radio">
+            <input type="radio" name="algorithm-mode" id="FCFS" value="FCFS" checked> <!-- default option-->
+                <label class="algorithm-selector-label" for="FCFS">FCFS</label>
+            <input type="radio" name="algorithm-mode" id="SSTF" value="SSTF">
+                <label class="algorithm-selector-label" for="SSTF">FCFS</label>
+            <input type="radio" name="algorithm-mode" id="ScanU"value="SCAN-up">
+                <label class="algorithm-selector-label" for="ScanU">FCFS</label>
+            <input type="radio" name="algorithm-mode" id="ScanD" value="SCAN-down">
+                <label class="algorithm-selector-label" for="ScanD">FCFS</label>
+            <input type="radio" name="algorithm-mode" id="CScanU" value="CSCAN-up">
+                <label class="algorithm-selector-label" for="CScanU">FCFS</label>
+            <input type="radio" name="algorithm-mode" id="CScanD" value="CSCAN-down">
+                <label class="algorithm-selector-label" for="CScanD">FCFS</label>
         </div>
-
+        <p id="?????????" class="onscreen-warning-message">message plot</p> <!-- inline style cause I am lazy-->
         <div>
             <button onclick="runSimulation()">Run simulation</button>
         </div>
