@@ -116,7 +116,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     
     flex-direction: row;
     color: aliceblue;
-    font-size: 15px;
+    font-size: 13px;
     opacity: 0.5;
     left: 50%;
     bottom: 2.5%;
@@ -217,7 +217,7 @@ customizable sadly.*/
     align-self: center;
     flex-direction: column;
     margin: 0;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     min-height: 75px;
     max-height: 500;
     min-width: 650px;
@@ -241,11 +241,11 @@ customizable sadly.*/
     flex-direction: row;
     border-width: 2px;
     border-style: solid;
-    border-color: red;
+    border-color: white;
 }
 .sim-table-cell {
-    background-color: red;
-    border-color: red;
+    color: white;
+    border-color: white;
 }
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
