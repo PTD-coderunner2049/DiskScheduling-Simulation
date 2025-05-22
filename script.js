@@ -3,9 +3,14 @@ function runSimulation() {
     //mapping the string
     let mappedQueue = numberMapping(getQueue().value);//is an array
     //sort the array
-    let sortedQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];//temporary
+    const fullArray = Array.from({ length: 200 }, (_, i) => i);
+    const selected15 = fullArray.sort(() => Math.random() - 0.5).slice(0, 15);
+    const orderedTestArray = [...selected15].sort((a, b) => a - b);
+    const shuffledTestArray = [...selected15].sort(() => Math.random() - 0.5);
+    
+    let sortedQueue = orderedTestArray;//temporary
     //Run the simulator algorithm for a result array
-    const simulatedQueue = [8, 2, 3, 5, 6, 4, 7, 1, 9];//temporary
+    const simulatedQueue = shuffledTestArray;//temporary
     //Build simulation
     constructSimTable(sortedQueue, simulatedQueue, clearSimTable());
 }
@@ -33,7 +38,7 @@ function constructSimTable(queue, simulatedQueue, simTable) {
         i = queue.indexOf(nums);
         
         if(i === -1){
-            alert("⚠️ Warning: Dark magic!\nDetail: One of the value in the simulated queue was not originally exist in the inputed queue.\nResult: One of the simulated row will be marked with an ✖️ instead of ⭕");
+            alert("⚠️ Warning: DEADCELL!\nDetail: One of the value in the simulated queue was not originally exist in the inputed queue.\nResult: One of the simulated row will be marked with an ✖️ instead of ⭕");
         }
         let newSimRow = document.createElement('DIV');
         newSimRow.className = "sim-row";

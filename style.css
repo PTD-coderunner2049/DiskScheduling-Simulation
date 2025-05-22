@@ -214,6 +214,7 @@ customizable sadly.*/
     white-space: nowrap;           /* Prevents text inside from wrapping */
     overflow-x: auto;              /* Enable horizontal scrolling */
 
+    font-size: 25px;
     align-self: center;
     flex-direction: column;
     margin: 0;
@@ -236,8 +237,8 @@ customizable sadly.*/
     align-self: center;
 
     gap: 2vh;
-    margin: 20px 0px; /*allside*/
-    padding: 20px;
+    margin: 0px 0px; /*allside*/
+    padding: 5px;
     
     flex-direction: row;
 }
@@ -245,11 +246,23 @@ customizable sadly.*/
     border-width: 2px;
     border-style: solid;
     border-color: white;
+    border-radius: 10px;
 }
 .sim-table-cell {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
     color: white;
+    width: 50px;
+    height: 50px;
+    
     border-color: white;
+    margin: 0;
 }
+
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
 @keyframes hueShift {
