@@ -110,10 +110,13 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     opacity: 1;
 }
 #intro-footer{
-    position: absolute;
+    display: inline-flex;
+
+    position: fixed;
     
+    flex-direction: row;
     color: aliceblue;
-    font-size: 18px;
+    font-size: 15px;
     opacity: 0.5;
     left: 50%;
     bottom: 2.5%;
@@ -202,16 +205,48 @@ customizable sadly.*/
     /*select label of the checked radio*/
     opacity: 0.7;
 }
-/*Simulated table*/
+/*simulation table*/
 /*------------------------------------------------------------------------------------------------------*/
-#simulated-table {
-    display: grid;
-    margin: 0;
-    color: aqua;
-    height: 700px;
-    width: 200px;
-}
+#sim-table {
+    display: flex;
 
+    flex-wrap: nowrap;             /* Prevent wrapping to a new line */
+    white-space: nowrap;           /* Prevents text inside from wrapping */
+    overflow-x: auto;              /* Enable horizontal scrolling */
+
+    align-self: center;
+    flex-direction: column;
+    margin: 0;
+    background-color: whitesmoke;
+    min-height: 75px;
+    max-height: 500;
+    min-width: 650px;
+    max-width: 1800px;
+    width: fit-content;
+
+}
+.sim-table-row {
+    display: flex;
+    flex-wrap: nowrap;             /* Prevent wrapping to a new line */
+    white-space: nowrap;           /* Prevents text inside from wrapping */
+    overflow-x: auto;              /* Enable horizontal scrolling */
+    
+    width: fit-content;
+    align-self: center;
+
+    gap: 2vh;
+    margin: 20px 0px; /*allside*/
+    padding: 20px;
+    
+    flex-direction: row;
+    border-width: 2px;
+    border-style: solid;
+    border-color: red;
+}
+.sim-table-cell {
+    background-color: red;
+    border-color: red;
+}
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
 @keyframes hueShift {
