@@ -19,14 +19,11 @@
         </h1>
         <div id="interface-block">
 
-            <div id="disk-track-capacity">
-                <p id="capacity-warning-message" class="onscreen-warning-message">capacity warning message</p> <!-- inline style cause I am lazy-->
-                <input type="'text" placeholder="Disk's track capacity">
-            </div>
-
-            <div id="I/O-request-queue">
-                <p id="queue-warning-message" class="onscreen-warning-message">queue warning message</p> <!-- inline style cause I am lazy-->
-                <input type="'text" placeholder="I/O-request-queue">
+            <div>
+                <p id="capacity-warning-message" class="onscreen-warning-message">capacity warning message</p> 
+                <input id="disk-track-capacity" type="'text" placeholder="Disk's track capacity">
+                <p id="queue-warning-message" class="onscreen-warning-message">queue warning message</p>
+                <input id="IO-request-queue" type="'text" placeholder="I/O-request-queue">
             </div>
     
             <div id="algorithm-selector-radio-block">
@@ -44,7 +41,7 @@
                 <label class="algorithm-selector-label" for="CScanD">[CScanD]</label>
             </div>
 
-            <p id="?????????" class="onscreen-warning-message">message plot</p> <!-- inline style cause I am lazy-->
+            <p id="?????????" class="onscreen-warning-message">message plot</p>
             <div>
                 <button onclick="runSimulation()">Run simulation</button>
             </div>
@@ -53,14 +50,14 @@
         <!-- Footer with hoasen name-->
         <h6 id="intro-footer">
             <div>
-                @Ilovemilord - HoaSenUniversity - demo.ver.0.1.13.e3519c32dfd08e265c35a149e35cb97d28c9071b
+                @Ilovemilord - HoaSenUniversity - demo.ver.0.1.13.e7c6e43a3a060b480c37a71351a9058256abbcb3
             </div>
          </h6>
     </div>
     <div id="sim-table">
-        <div class="sim-table-row" id="1">
+        <!-- <div class="sim-header-row sim-row">
             <div class="sim-table-cell">O W O</div>
-        </div>
+        </div> -->
     </div>
     <script src="script.js"></script>
 </body>

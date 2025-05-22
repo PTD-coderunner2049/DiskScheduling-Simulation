@@ -225,7 +225,8 @@ customizable sadly.*/
     width: fit-content;
 
 }
-.sim-table-row {
+
+.sim-row {
     display: flex;
     flex-wrap: nowrap;             /* Prevent wrapping to a new line */
     white-space: nowrap;           /* Prevents text inside from wrapping */
@@ -239,6 +240,8 @@ customizable sadly.*/
     padding: 20px;
     
     flex-direction: row;
+}
+.sim-header-row {
     border-width: 2px;
     border-style: solid;
     border-color: white;
