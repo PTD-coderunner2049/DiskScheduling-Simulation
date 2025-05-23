@@ -19,7 +19,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 20%, #000 100%), url('/assets/background.jpg');
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 20%, #000 100%), url('/assets/backgroundB.jpg');
     
     background-repeat: no-repeat;
     background-position: top center;
