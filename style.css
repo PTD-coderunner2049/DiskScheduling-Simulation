@@ -135,16 +135,20 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     
     user-select: none; /*un interactable*/
 }
-.onscreen-warning-message {
-    color: red;
-    font-size: 15;
+.onscreen-message {
     font-family: ISOCTEUR;
-    font-weight: bold;
-    z-index: 10;
+    /* font-weight: bold; */
+    color: white;
     
+    z-index: 10;
+
     margin: 15px auto 3px auto;
     user-select: none; /*un interactable*/
 }
+.onscreen-warning-message {
+    color: red;
+}
+
 /*------------------------------------------------------------------------------------------------------*/
 /*Radio algorithym styling, I will hid the original radio and use a label attached to each radio id
 then the label can act as click point for it and then style the label, radio seem tobe old and is not very
