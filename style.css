@@ -19,7 +19,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 20%, #000 100%), url('https://media.discordapp.net/attachments/786825798119587911/1374681181160996936/3d-abstract-background-with-flowing-digital-particles.jpg?ex=682eef1d&is=682d9d9d&hm=5ce0950a6e42c741756bf46eaf67cc702633bc74990ceccf9f4e0ac8b7fc0016&=&format=webp&width=1363&height=960');
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 20%, #000 100%), url('/assets/background.jpg');
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
