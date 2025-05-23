@@ -55,11 +55,12 @@ function constructSimTable(queue, simulatedQueue, simTable) {
         
         newCell.className = "sim-table-cell";
         newCell.innerText = nums;
-        
+        newCell.style.height = "50px";
         headerRow.appendChild(newCell);
+        console.log("D.S.A.S: Building head cell...");
     });
     simTable.appendChild(headerRow);//add it all at once
-    
+    console.log("D.S.A.S: Building head row...");
     //add the simulated rows
     let i;
         //add row of cells for every values in simulated queue.

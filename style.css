@@ -283,7 +283,7 @@ customizable sadly.*/
     padding: 5px;
     
     border-radius: 20px;
-    border-bottom: 10px solid rgba(0, 0, 0, 0.8);
+    /* border-bottom: 10px solid rgba(0, 0, 0, 0.8); */
 
     flex-direction: row;
 }
@@ -303,7 +303,7 @@ customizable sadly.*/
 
     color: white;
     width: 50px;
-    height: 50px;
+    height: 25px;
     
     border-color: white;
     margin: 0;
