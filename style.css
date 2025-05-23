@@ -175,13 +175,9 @@ customizable sadly.*/
     border-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0);
 
-    /* transition: 
-    opacity 1s ease-in-out; */
+    user-select: none;
 }
 
-/* #intro-block:hover #algorithm-selector-radio-block {
-    opacity: 1;
-} */
 .algorithm-selector-radio {
     display: none;
 }
@@ -196,11 +192,10 @@ customizable sadly.*/
     transition: 
         background 0.3s;
 }
-.algorithm-selector-label:not(:last-of-type) {
-    /*all but last one, then turn the left edge visible, last one already have its right edge using its mother container*/
-    
-    /* border-right: 2px solid white; */
-}
+/* .algorithm-selector-label:not(:last-of-type) {
+    all but last one, then turn the left edge visible, last one already have its right edge using its mother container    
+     border-right: 2px solid white; 
+} */
 .algorithm-selector-radio:checked + .algorithm-selector-label {
     /*select label of the checked radio*/
     background-color: rgba(4, 179, 185, 0.5);
