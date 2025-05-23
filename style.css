@@ -19,8 +19,8 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('../assets/background.jpg');
-    /*linear-gradient(to bottom, rgba(0,0,0,0) 20%, #000 100%), */
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 20%, #000 100%), url('/assets/background.jpg');
+    
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
@@ -80,6 +80,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     -webkit-text-fill-color: transparent;
     /* color: transparent; */
 
+    user-select: none; /*un interactable*/
     animation: hueShift 5s linear infinite;
     /* mix-blend-mode: color-dodge; */
 
@@ -96,14 +97,14 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     /*when website size is small, the border expand slower than caption, so I gave it delay*/
     letter-spacing: 50px;
     /* styles apply to #caption when #intro-block is hovered */
-
 }
 #subcaption {
     color: orangered;
     opacity: 0;
     margin-top: 0;
     font-size: 25px;
-    pointer-events: none; /*un-interactable */
+    user-select: none; /*un interactable*/
+
     transition: 
         opacity 1s ease-in-out;
 
@@ -127,7 +128,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     transform: translateX(-50%); /* Move anchor from end to middle of the text for centering dynamically*/
     margin: 0;
     
-    pointer-events: none /*un-interactable */ !important;
+    user-select: none; /*un interactable*/
 }
 .onscreen-warning-message {
     color: red;
@@ -136,7 +137,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     font-weight: bold;
     z-index: 10;
     
-    pointer-events: none;
+    user-select: none; /*un interactable*/
 }
 /*------------------------------------------------------------------------------------------------------*/
 /*Radio algorithym styling, I will hid the original radio and use a label attached to each radio id
@@ -230,6 +231,7 @@ customizable sadly.*/
     width: fit-content;
     margin: 50px;
 
+    user-select: none; /*un interactable*/
 }
 
 .sim-row {
@@ -248,10 +250,12 @@ customizable sadly.*/
     flex-direction: row;
 }
 .sim-header-row {
-    border-width: 2px;
+    /* border-width: 2px;
     border-style: solid;
     border-color: white;
-    border-radius: 10px;
+    border-radius: 10px; */
+
+    border-bottom: 2px solid white;
 }
 .sim-table-cell {
     display: flex;
