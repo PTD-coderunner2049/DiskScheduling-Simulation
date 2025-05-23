@@ -2,6 +2,18 @@ window.addEventListener("load", () => {
     const input = document.getElementById("disk-track-capacity");
     input.focus(); //default focused field
 });
+/*--------------------------------------------------------------------------------------------*/
+//auto stretch I/O request input
+const input = document.getElementById("IO-request-queue");
+const mirrorer = document.getElementById("input-mirrorer-01");
+
+//copy input to mirrorer
+input.addEventListener("input", () => {
+  mirrorer.textContent = input.value || input.placeholder;
+  input.style.width = mirrorer.offsetWidth + "px";
+});
+/*--------------------------------------------------------------------------------------------*/
+// Simulation Functions
 // let ioQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 function runSimulation() {
     //mapping the string
@@ -79,3 +91,5 @@ function numberMapping(inputStr) {
     //split(/\s+/) splits the string on one or more whitespace characters.
     //map(Number) converts each string in the array to a number.
 }
+/*--------------------------------------------------------------------------------------------*/
+// Disk scheduling Algorythms
