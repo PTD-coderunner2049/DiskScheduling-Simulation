@@ -1,0 +1,27 @@
+name: Deploy with Commit Hash
+
+on:
+  push:
+    branches: [main]  # or change this if you use a different main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Get short commit hash
+        id: get_hash
+        run: echo "hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Inject commit hash into HTML
+        run: |
+          sed -i "s/__COMMIT_HASH__/${{ steps.get_hash.outputs.hash }}/g" index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
