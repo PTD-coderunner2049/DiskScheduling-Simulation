@@ -74,10 +74,10 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     letter-spacing: 5px;
 
     background: linear-gradient(to right,rgb(0, 247, 255) 10%,#eeff00 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    /* color: transparent; */
 
     animation: hueShift 10s linear infinite;
     /* mix-blend-mode: color-dodge; */
@@ -274,7 +274,7 @@ customizable sadly.*/
       filter: hue-rotate(-20deg);
     }
     50% {
-      filter: hue-rotate(30deg);
+      filter: hue-rotate(130deg);
     }
     100% {
       filter: hue-rotate(-20deg);
