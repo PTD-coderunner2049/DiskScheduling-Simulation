@@ -44,7 +44,12 @@ function runSimulation() {
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
     constructSimTable(sortedQueue, simulatedQueue, clearSimTable());//clean previous table aswell
-    connectCell(injectSVG());
+    let svg = document.querySelectorAll("svg");
+    if(svg.length === 0){
+        connectCell(injectSVG());
+    }else{
+        connectCell(svg[0]);
+    }
     // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
     if(pageStartUp === 1){
         document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
@@ -139,7 +144,7 @@ function numberMapping(inputStr) {
     //map(Number) converts each string in the array to a number.
 }
 
-function injectSVG(simTable){
+function injectSVG(simTable){//inject to table
     simTable = document.querySelector('#sim-table');
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         // Use actual body scroll size
@@ -153,7 +158,8 @@ function injectSVG(simTable){
     simTable.appendChild(svg);
     return svg;
 }
-function injectSVG(){
+
+function injectSVG(){//inject to body
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         // Use actual body scroll size
     const pageWidth = Math.max(
@@ -174,6 +180,7 @@ function injectSVG(){
     document.body.appendChild(svg);
     return svg;
 }
+
 function connectCell(svg) {
     let liveCells = document.querySelectorAll(".liveCell");
     if (liveCells.length < 2) return;
