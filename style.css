@@ -175,11 +175,11 @@ customizable sadly.*/
 #interface-block {
     text-align: center;
     align-self: center;
-    opacity: 1;
+    opacity: 0.2;
 
     width: fit-content;
     transition: 
-        opacity 0.3s ease-in-out;
+        opacity 0.2s ease-in-out;
 }
 #intro-block:hover #interface-block {
     opacity: 1;
@@ -204,20 +204,23 @@ customizable sadly.*/
 
     user-select: none;
 }
-
 .algorithm-selector-radio {
     display: none;
 }
 .algorithm-selector-label {
     padding: 10px 20px;
     color: white;
+    background-color: rgba(255, 255, 255, 0);
     
     flex: 1 1 1;
     /* background-color: orangered; */
     cursor: pointer; /*change cursor when hover*/
 
     transition: 
-        background 0.3s;
+        background-color 0.2s ease-in-out;
+}
+.algorithm-selector-label:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 /* .algorithm-selector-label:not(:last-of-type) {
     all but last one, then turn the left edge visible, last one already have its right edge using its mother container    
@@ -240,7 +243,8 @@ customizable sadly.*/
     color: white;
     min-width: 200px;
     width: fit-content;
-    background: transparent;
+    background: rgba(0, 255, 255, 0);
+
 
     outline: none; /* outline != border, it is use when input field is selected*/
 
@@ -252,6 +256,12 @@ customizable sadly.*/
     border-style: solid;
     border-color: red;
     border-radius: 25px;
+
+    transition: 
+        background 0.2s ease-in-out;
+}
+.interface-input:hover {
+    background: rgba(0, 255, 255, 0.1);
 }
 .input-mirrorer {/*to measure stringlength from input, do the autostretch in javascript with this later*/
     position: absolute;
@@ -324,7 +334,7 @@ customizable sadly.*/
     border-color: white;
     margin: 0;
 }
-
+/*liveCell is cell that is selected by algorythm, configured and use in script file.
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
 @keyframes hueShift {
