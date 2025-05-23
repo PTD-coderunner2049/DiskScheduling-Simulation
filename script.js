@@ -1,7 +1,14 @@
+/*--------------------------------------------------------------------------------------------*/
+//eventListeners setup
+
+/*--------------------------------------------------------------------------------------------*/
 window.addEventListener("load", () => {
     const input = document.getElementById("disk-track-capacity");
     input.focus(); //default focused field
 });
+
+
+
 /*--------------------------------------------------------------------------------------------*/
 //auto stretch I/O request input
 const input = document.getElementById("IO-request-queue");
@@ -28,10 +35,12 @@ function runSimulation() {
     //Run the simulator algorithm for a result array
     const simulatedQueue = shuffledTestArray;//temporary
     //Build simulation
+    console.log("Building simulation.");
     constructSimTable(sortedQueue, simulatedQueue, clearSimTable());
 }
 
 function constructSimTable(queue, simulatedQueue, simTable) {
+    let darkSpellCount = 0;
     //add the header row for the table
     const headerRow = document.createElement('DIV');
     headerRow.className = "sim-row sim-header-row";
@@ -55,6 +64,8 @@ function constructSimTable(queue, simulatedQueue, simTable) {
         
         if(i === -1){
             alert("⚠️ Warning: DEADCELL!\nDetail: One of the value in the simulated queue was not originally exist in the inputed queue.\nResult: One of the simulated row will be marked with an ✖️ instead of ⭕");
+            darkSpellCount++;
+            console.log("⚠️ Dark magic detected! ⚠️");
         }
         let newSimRow = document.createElement('DIV');
         newSimRow.className = "sim-row";
@@ -69,11 +80,14 @@ function constructSimTable(queue, simulatedQueue, simTable) {
                 newCell.innerText = "✖️";//unwanted cell
             }
             newSimRow.appendChild(newCell);
+            console.log("Building cell...");
         }
         simTable.appendChild(newSimRow);
+        console.log("Building row...");
         //find where the cell should go accordingly to the table
     })
-
+    console.log("Building simulation: completed.");
+    console.log("dark spell found: " + darkSpellCount);
 
 }
 function clearSimTable() {
