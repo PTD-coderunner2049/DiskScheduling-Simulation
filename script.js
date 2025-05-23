@@ -43,7 +43,8 @@ function runSimulation() {
     const simulatedQueue = shuffledTestArray;//temporary
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
-    constructSimTable(sortedQueue, simulatedQueue, clearSimTable());
+    constructSimTable(sortedQueue, simulatedQueue, clearSimTable());//clean previous table aswell
+    connectCell(injectSVG());
     // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
     if(pageStartUp === 1){
         document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
@@ -52,14 +53,14 @@ function runSimulation() {
     }
 }
 
-function constructSimTable(queue, simulatedQueue, simTable) {
+function constructSimTable(sortedQueue, simulatedQueue, simTable) {
     let darkSpellCount = 0;
     let operationCount = 0;
     //add the header row for the table
     const headerRow = document.createElement('DIV');
     headerRow.className = "sim-row sim-header-row";
         //add the cell for the row
-    queue.forEach(nums => {//need to be replaced with a sorted queue
+    sortedQueue.forEach(nums => {//need to be replaced with a sorted queue
         const newCell = document.createElement('DIV');
         
         newCell.className = "sim-table-cell";
@@ -73,23 +74,25 @@ function constructSimTable(queue, simulatedQueue, simTable) {
     //add the simulated rows
     let i;
         //add row of cells for every values in simulated queue.
-    simulatedQueue.forEach(nums => {
-        
-        i = queue.indexOf(nums);
+        simulatedQueue.forEach(nums => {
+        i = sortedQueue.indexOf(nums);
+        console.log("DEBUG>>current cell is " + nums + " and its index:" + i);
         
         if(i === -1){
             alert("⚠️ Warning: DEADCELL!\nDetail: One of the value in the simulated queue was not originally exist in the inputed queue.\nResult: One of the simulated row will be marked with an ✖️ instead of ⭕");
             darkSpellCount++;
             console.log("Warning: ⚠️ DEADCELL detected! ⚠️");
         }
+
         let newSimRow = document.createElement('DIV');
         newSimRow.className = "sim-row";
         
         for (let j = 0; j < simulatedQueue.length; j++) {
             const newCell = document.createElement('DIV');
             newCell.className = "sim-table-cell";
-            if(i === j) {
-                newCell.innerText = "⭕";//special cell
+            if(j === i) {
+                newCell.innerText = nums;//special cell
+                newCell.className = "sim-table-cell liveCell"
             }
             if(i === -1) {
                 newCell.innerText = "✖️";//unwanted cell
@@ -104,18 +107,30 @@ function constructSimTable(queue, simulatedQueue, simTable) {
     })
     console.log("D.S.A.S: Building simulation: completed.");
     console.log("DEADCELL Found: " + darkSpellCount + " during total of " + operationCount + " operations.");
-
 }
 function clearSimTable() {
-    const simTable = document.querySelector('#sim-table');
-    simTable.innerHTML = ""; // removes all children
     console.log("D.S.A.S: cleaning previous simulation...");
+    // Remove all SVG elements (that contain drawed line :DD)
+    document.querySelectorAll("line").forEach(line => line.remove());
+
+    // Remove the entire sim-table element
+    const simTable = document.querySelector('#sim-table');
+    if (simTable) {
+        simTable.innerHTML = ""; // removes all children
+        // simTable.remove(); //No because I want to reuse it and save time from create new one.
+        //remove itself. I dont do innerHtml cáuse simtable is child to body, that mean rewrite full body html here without svg, lol NO, thank! :)
+        console.log("D.S.A.S: removed sim-table and SVG elements.");
+    } else {
+        console.log("D.S.A.S: sim-table not found, probably first simulation.");
+    }
     return simTable;
 }
+
 function getQueue() {
     //looking for the I/O queue
     return document.querySelector('#IO-request-queue');
 }
+
 function numberMapping(inputStr) {
     console.log("D.S.A.S: retriving I/O requests");
     return inputStr.trim().split(/\s+/).map(Number);
@@ -123,5 +138,49 @@ function numberMapping(inputStr) {
     //split(/\s+/) splits the string on one or more whitespace characters.
     //map(Number) converts each string in the array to a number.
 }
+
+function injectSVG(){
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        // Use actual body scroll size
+    const pageWidth = Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth
+    );
+    const pageHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+    );
+    svg.setAttribute("style",
+        `position: absolute;
+        top: 0; left: 0;
+        width: ${pageWidth}px;
+        height: ${pageHeight}px;
+        pointer-events: none; z-index: 0;`
+    );
+    document.body.appendChild(svg);
+    return svg;
+}
+
+function connectCell(svg) {
+    let liveCells = document.querySelectorAll(".liveCell");
+    if (liveCells.length < 2) return;
+
+    for (let i = 1; i < liveCells.length; i++) {
+        const r1 = liveCells[i - 1].getBoundingClientRect();
+        const r2 = liveCells[i].getBoundingClientRect();
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("stroke", "red");
+        line.setAttribute("stroke-width", "2");
+
+        line.setAttribute('x1', r1.left + r1.width / 2 + window.scrollX);
+        line.setAttribute('y1', r1.top + r1.height / 2 + window.scrollY);
+        line.setAttribute('x2', r2.left + r2.width / 2 + window.scrollX);
+        line.setAttribute('y2', r2.top + r2.height / 2 + window.scrollY);
+
+        svg.appendChild(line);
+    }
+}
+
 /*--------------------------------------------------------------------------------------------*/
 // Disk scheduling Algorythms
