@@ -6,7 +6,7 @@
     --theme-base-font: Consolas;
     --secondary-theme-font: ISOCTEUR;
     --stylized-head-font: Polya Regular;
-    --background-image: url('demo 6.jpg');
+    --background-image: url('demo 6 scaledown.jpg');
 }
 body {
     display: flex; /* specify flex type of box for body*/
