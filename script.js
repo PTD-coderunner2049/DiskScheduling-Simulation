@@ -1,10 +1,12 @@
 /*--------------------------------------------------------------------------------------------*/
 //eventListeners setup
+console.log("D.S.A.S: Page enter function...");
 
 /*--------------------------------------------------------------------------------------------*/
 window.addEventListener("load", () => {
     const input = document.getElementById("disk-track-capacity");
     input.focus(); //default focused field
+    console.log("D.S.A.S: Defaultly focused input field: Set.");
 });
 
 
@@ -13,11 +15,13 @@ window.addEventListener("load", () => {
 //auto stretch I/O request input
 const input = document.getElementById("IO-request-queue");
 const mirrorer = document.getElementById("input-mirrorer-01");
+console.log("D.S.A.S: Autostretch input field: Set.");
 
 //copy input to mirrorer
 input.addEventListener("input", () => {
-  mirrorer.textContent = input.value || input.placeholder;
-  input.style.width = mirrorer.offsetWidth + "px";
+    mirrorer.textContent = input.value || input.placeholder;
+    input.style.width = mirrorer.offsetWidth + "px";
+    console.log("D.S.A.S: Input field is stretching...");
 });
 /*--------------------------------------------------------------------------------------------*/
 // Simulation Functions
@@ -35,12 +39,13 @@ function runSimulation() {
     //Run the simulator algorithm for a result array
     const simulatedQueue = shuffledTestArray;//temporary
     //Build simulation
-    console.log("Building simulation.");
+    console.log("D.S.A.S: Simulation process commited.");
     constructSimTable(sortedQueue, simulatedQueue, clearSimTable());
 }
 
 function constructSimTable(queue, simulatedQueue, simTable) {
     let darkSpellCount = 0;
+    let operationCount = 0;
     //add the header row for the table
     const headerRow = document.createElement('DIV');
     headerRow.className = "sim-row sim-header-row";
@@ -65,7 +70,7 @@ function constructSimTable(queue, simulatedQueue, simTable) {
         if(i === -1){
             alert("⚠️ Warning: DEADCELL!\nDetail: One of the value in the simulated queue was not originally exist in the inputed queue.\nResult: One of the simulated row will be marked with an ✖️ instead of ⭕");
             darkSpellCount++;
-            console.log("⚠️ Dark magic detected! ⚠️");
+            console.log("Warning: ⚠️ DEADCELL detected! ⚠️");
         }
         let newSimRow = document.createElement('DIV');
         newSimRow.className = "sim-row";
@@ -80,19 +85,21 @@ function constructSimTable(queue, simulatedQueue, simTable) {
                 newCell.innerText = "✖️";//unwanted cell
             }
             newSimRow.appendChild(newCell);
-            console.log("Building cell...");
+            console.log("D.S.A.S: Building cell...");
         }
         simTable.appendChild(newSimRow);
-        console.log("Building row...");
+        console.log("D.S.A.S: Building row...");
+        operationCount++;
         //find where the cell should go accordingly to the table
     })
-    console.log("Building simulation: completed.");
-    console.log("dark spell found: " + darkSpellCount);
+    console.log("D.S.A.S: Building simulation: completed.");
+    console.log("DEADCELL Found: " + darkSpellCount + " during total of " + operationCount + " operations.");
 
 }
 function clearSimTable() {
     const simTable = document.querySelector('#sim-table');
     simTable.innerHTML = ""; // removes all children
+    console.log("D.S.A.S: cleaning previous simulation...");
     return simTable;
 }
 function getQueue() {
@@ -100,6 +107,7 @@ function getQueue() {
     return document.querySelector('#IO-request-queue');
 }
 function numberMapping(inputStr) {
+    console.log("D.S.A.S: retriving I/O requests");
     return inputStr.trim().split(/\s+/).map(Number);
     //trim() removes leading and trailing whitespace.
     //split(/\s+/) splits the string on one or more whitespace characters.
