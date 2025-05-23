@@ -1,7 +1,11 @@
 /*Color theme*/
 :root {
-    --primary-white: white;
-    --secondary-teal: #148291;
+    --primary-white: aliceblue;
+    --secondary-orange: orangered;
+    --secondary-red: crimson;
+    --theme-base-font: Consolas;
+    --secondary-theme-font: ISOCTEUR;
+    --stylized-head-font: Polya Regular;
 }
 body {
     display: flex; /* specify flex type of box for body*/
@@ -12,7 +16,7 @@ body {
     height: fit-content;
     margin: 0;
     /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR,, 'Courier New', Courier, monospace*/
-    font-family: Consolas;
+    font-family: var(--theme-base-font);
     background-color: #000000;
 }
 body::before {/*shading bg, if doing this indside body, it affect other elements of body, so I move the bg here and filter color here too*/
@@ -56,7 +60,6 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
 
     /*border: 0;*/
     border-radius: 50px;
-    box-shadow: 0px -100px 10em rgb(0, 0, 0, 0);
     
     box-sizing: border-box; /* padding doesn't exceed width */
     background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
@@ -68,14 +71,13 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
         width 0.5s ease-in-out;
 }
 #intro-block:hover {
-    box-shadow: 0px -100px 10em rgb(0, 0, 0, 1);
-    width: 90%;
+    width: 95%;
     /* opacity: 1; */
 }
 #caption { /* Program header name styling */
     margin: 0;
     font-size: 130px;
-    font-family: Polya Regular;
+    font-family: var(--stylized-head-font);
     letter-spacing: 5px;
 
     background: linear-gradient(to right,rgba(0, 255, 255) 100%, rgba(255, 0, 0)10%);
@@ -89,7 +91,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     /* mix-blend-mode: color-dodge; */
 
     /*If I never been an artist, I would not discover this :*/
-    text-shadow: 0px 0px 100px rgba(255, 102, 0, 0.5);
+    text-shadow: 0px 0px 100px rgba(0, 217, 255, 0.5);
 
     transition:
         font-size 0.5s ease-in-out,
@@ -104,7 +106,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     /* styles apply to #caption when #intro-block is hovered */
 }
 #subcaption {
-    color: orangered;
+    color: var(--secondary-orange);
     opacity: 0;
     margin-top: 0;
     font-size: 25px;
@@ -125,7 +127,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     position: fixed;
     
     flex-direction: row;
-    color: aliceblue;
+    color: var(--primary-white);
     font-size: 13px;
     opacity: 0.5;
     left: 50%;
@@ -136,7 +138,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     user-select: none; /*un interactable*/
 }
 .onscreen-message {
-    font-family: ISOCTEUR;
+    font-family: var(--secondary-theme-font);
     /* font-weight: bold; */
     color: white;
     
@@ -146,7 +148,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     user-select: none; /*un interactable*/
 }
 .onscreen-warning-message {
-    color: red;
+    color: var(--secondary-red);
 }
 
 /*------------------------------------------------------------------------------------------------------*/
@@ -171,7 +173,7 @@ customizable sadly.*/
     overflow: hidden;
     width: fit-content;
     /* opacity: 0.3; */
-    margin: 50px auto;
+    margin: 50px auto 15px;
 
     align-self: center; /* stop this div from sticking it's left edge parent*/
     justify-content: center; /*center children*/
@@ -214,9 +216,21 @@ customizable sadly.*/
     opacity: 0.7;
 }
 
-#interface-input {
+.interface-input { 
+    text-align: center;
+    font-family: var(--theme-base-font);
+    
+    color: white;
+
+    background: transparent;
+
+    margin: 15px;
     padding: 10px 20px;
     margin-bottom: 15px;
+    
+    border-width: 2px;
+    border-color: red;
+    border-radius: 25px;
 }
 /*simulation table*/
 /*------------------------------------------------------------------------------------------------------*/
