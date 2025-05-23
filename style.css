@@ -73,7 +73,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     /* font-family: Polya Regular; */
     letter-spacing: 5px;
 
-    background: linear-gradient(to right,rgb(0, 247, 255) 10%,#eeff00 100%);
+    background: linear-gradient(to right,rgb(255, 123, 0) 10%,#eeff00 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
