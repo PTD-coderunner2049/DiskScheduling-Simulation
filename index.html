@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Milan's DSAS page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="PhamTrungDuc-22304059">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="intro-block">
+
+        <h1 id="caption">
+            D.S.A.S
+            <h2 id="subcaption">
+                [Disk Scheduling Algorithm Simulator]
+            </h2>
+        </h1>
+        <div id="interface-block">
+
+            <div id="input-block">
+                <p id="capacity-warning-message" class="onscreen-warning-message">capacity warning message</p> 
+                <input id="disk-track-capacity" class="interface-input" type="'text" placeholder="Disk's track capacity">
+                <p id="queue-warning-message" class="onscreen-warning-message">queue warning message</p>
+                <input id="IO-request-queue" class="interface-input" type="'text" placeholder="I/O-request-queue">
+            </div>
+    
+            <div id="algorithm-selector-radio-block">
+                <input class="algorithm-selector-radio" type="radio" name="algorithm-mode" id="FCFS" value="FCFS" checked><!-- default option-->
+                <label class="algorithm-selector-label" for="FCFS">[FCFS]</label>
+                <input class="algorithm-selector-radio" type="radio" name="algorithm-mode" id="SSTF" value="SSTF">
+                <label class="algorithm-selector-label" for="SSTF">[SSTF]</SSTF></label>
+                <input class="algorithm-selector-radio" type="radio" name="algorithm-mode" id="ScanU"value="SCAN-up">
+                <label class="algorithm-selector-label" for="ScanU">[ScanU]</label>
+                <input class="algorithm-selector-radio" type="radio" name="algorithm-mode" id="ScanD" value="SCAN-down">
+                <label class="algorithm-selector-label" for="ScanD">[ScanD]</label>
+                <input class="algorithm-selector-radio" type="radio" name="algorithm-mode" id="CScanU" value="CSCAN-up">
+                <label class="algorithm-selector-label" for="CScanU">[CScanU]</label>
+                <input class="algorithm-selector-radio" type="radio" name="algorithm-mode" id="CScanD" value="CSCAN-down">
+                <label class="algorithm-selector-label" for="CScanD">[CScanD]</label>
+            </div>
+
+            <div id="button-block">
+                <p id="?????????" class="onscreen-warning-message">message plot</p>
+                <button id="run-button"onclick="runSimulation()">Run simulation</button>
+            </div>
+            
+        </div>
+        <!-- Footer with hoasen name-->
+        <h6 id="intro-footer">
+            <div>
+                @Ilovemilord - HoaSenUniversity - demo.commit.ver.0.1.13.37d1d56
+            </div>
+        </h6>
+    </div>
+    <div id="sim-table">
+        <!-- <div class="sim-header-row sim-row">
+            <div class="sim-table-cell">O W O</div>
+        </div> -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+/*Color theme*/
+:root {
+    --primary-white: white;
+    --secondary-teal: #148291;
+}
+body {
+    display: flex; /* specify flex type of box for body*/
+    flex-direction: column;
+    justify-content: flex-start; /* horizontally */
+    align-items: center;  /* vertically */
+    /* min-height: 300vh; */
+    height: fit-content;
+    margin: 0;
+    /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR,, 'Courier New', Courier, monospace*/
+    font-family: Consolas;
+    background-color: #000000;
+}
+body::before {/*shading bg, if doing this indside body, it affect other elements of body, so I move the bg here and filter color here too*/
+    content: "";
+    position: fixed; /*body is the largest div, so using absolute may cause ::before to not cover the whole website, and make the bg scaled down in resolution*/
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 100%), url('background.jpg');
+    
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+
+    z-index: -1;
+    /*z-index controls the stacking order of elements.
+    Higher numbers appear on top, lower numbers appear underneath.*/
+    
+    animation: hueShift 10s linear infinite;
+}
+/*This is css for the intro box */
+/*------------------------------------------------------------------------------------------------------*/
+#intro-block {
+    display: inline-flex /* makes it shrink-wrap content */;
+    /*background-image: linear-gradient(to bottom, var(--primary-white), var(--secondary-teal));*/
+    height: 700px;
+    width: 30%;
+    min-width: 650px;
+
+    text-align: center;
+    align-self: center;
+    flex-direction: column;
+
+    opacity: 1;
+
+    margin: 25px 0px;
+    /*margin 4val: all side
+    margin 2 vals: top/bottom & left/right
+    margin 3 vals: top & right/bottom & left
+    margin 4 vals: top & right & bottom & left*/
+
+    padding: 20px; /*spacing on all side*/
+
+    /*border: 0;*/
+    border-radius: 50px;
+    /* box-shadow: 0px -100px 400em rgb(0, 0, 0); */
+    box-sizing: border-box; /* padding doesn't exceed width */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+
+    /* transition: all 6s ease-in-out; */
+    transition:
+        opacity 0.5s ease-in-out,
+        width 0.5s ease-in-out;
+}
+#intro-block:hover {
+    width: 90%;
+    /* opacity: 1; */
+}
+#caption { /* Program header name styling */
+    margin: 0;
+    font-size: 130px;
+    font-family: Polya Regular;
+    letter-spacing: 5px;
+
+    background: linear-gradient(to right,rgb(255, 123, 0) 10%,#eeff00 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* color: transparent; */
+
+    user-select: none; /*un interactable*/
+    animation: hueShift 5s linear infinite;
+    /* mix-blend-mode: color-dodge; */
+
+    /*If I never been an artist, I would not discover this :*/
+    text-shadow: 0px 0px 100px rgba(255, 102, 0, 0.5);
+
+    transition:
+        font-size 0.5s ease-in-out,
+        letter-spacing 0.5s ease-in-out;
+}
+#intro-block:hover #caption {
+    font-size: 130px;
+    transition-delay: 0.2s;
+    /*when website size is small, the border expand slower than caption, so I gave it delay*/
+    letter-spacing: 50px;
+    /* styles apply to #caption when #intro-block is hovered */
+}
+#subcaption {
+    color: orangered;
+    opacity: 0;
+    margin-top: 0;
+    font-size: 25px;
+    user-select: none; /*un interactable*/
+
+    transition: 
+        opacity 1s ease-in-out;
+
+    /* border-radius: 5px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0); */
+}
+#intro-block:hover #subcaption {
+    opacity: 1;
+}
+#intro-footer{
+    display: inline-flex;
+
+    position: fixed;
+    
+    flex-direction: row;
+    color: aliceblue;
+    font-size: 13px;
+    opacity: 0.5;
+    left: 50%;
+    bottom: 2.5%;
+    transform: translateX(-50%); /* Move anchor from end to middle of the text for centering dynamically*/
+    margin: 0;
+    
+    user-select: none; /*un interactable*/
+}
+.onscreen-warning-message {
+    color: red;
+    font-size: 15;
+    font-family: ISOCTEUR;
+    font-weight: bold;
+    z-index: 10;
+    
+    margin: 15px auto 3px auto;
+    user-select: none; /*un interactable*/
+}
+/*------------------------------------------------------------------------------------------------------*/
+/*Radio algorithym styling, I will hid the original radio and use a label attached to each radio id
+then the label can act as click point for it and then style the label, radio seem tobe old and is not very
+customizable sadly.*/
+#interface-block {
+    text-align: center;
+    align-self: center;
+    opacity: 1;
+
+    width: fit-content;
+    transition: 
+        opacity 0.3s ease-in-out;
+}
+#intro-block:hover #interface-block {
+    opacity: 1;
+}
+#algorithm-selector-radio-block {
+    display: inline-flex;
+    /* text-align: center; */
+    overflow: hidden;
+    width: fit-content;
+    /* opacity: 0.3; */
+    margin: 50px auto;
+
+    align-self: center; /* stop this div from sticking it's left edge parent*/
+    justify-content: center; /*center children*/
+
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0);
+
+    user-select: none;
+}
+
+.algorithm-selector-radio {
+    display: none;
+}
+.algorithm-selector-label {
+    padding: 10px 20px;
+    color: white;
+    
+    flex: 1 1 1;
+    /* background-color: orangered; */
+    cursor: pointer; /*change cursor when hover*/
+
+    transition: 
+        background 0.3s;
+}
+/* .algorithm-selector-label:not(:last-of-type) {
+    all but last one, then turn the left edge visible, last one already have its right edge using its mother container    
+     border-right: 2px solid white; 
+} */
+.algorithm-selector-radio:checked + .algorithm-selector-label {
+    /*select label of the checked radio*/
+    background-color: rgba(4, 179, 185, 0.5);
+    font-weight: bold;
+}
+.algorithm-selector-radio:not(:checked) + .algorithm-selector-label {
+    /*select label of the checked radio*/
+    opacity: 0.7;
+}
+
+#interface-input {
+    padding: 10px 20px;
+    margin-bottom: 15px;
+}
+/*simulation table*/
+/*------------------------------------------------------------------------------------------------------*/
+#sim-table {
+    display: flex;
+
+    flex-wrap: nowrap;             /* Prevent wrapping to a new line */
+    white-space: nowrap;           /* Prevents text inside from wrapping */
+    overflow-x: auto;              /* Enable horizontal scrolling */
+
+    font-size: 25px;
+    align-self: center;
+    flex-direction: column;
+    margin: 0;
+    /* background-color: whitesmoke; */
+    min-height: 75px;
+    max-height: 500;
+    min-width: 650px;
+    max-width: 1800px;
+    width: fit-content;
+    margin: 50px;
+
+    user-select: none; /*un interactable*/
+}
+
+.sim-row {
+    display: flex;
+    flex-wrap: nowrap;             /* Prevent wrapping to a new line */
+    white-space: nowrap;           /* Prevents text inside from wrapping */
+    overflow-x: auto;              /* Enable horizontal scrolling */
+    
+    width: fit-content;
+    align-self: center;
+
+    gap: 2vh;
+    margin: 0px 0px; /*allside*/
+    padding: 5px;
+    
+    flex-direction: row;
+}
+.sim-header-row {
+    /* border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 10px; */
+
+    border-bottom: 2px solid white;
+}
+.sim-table-cell {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: white;
+    width: 50px;
+    height: 50px;
+    
+    border-color: white;
+    margin: 0;
+}
+
+/*Animation list*/
+/*------------------------------------------------------------------------------------------------------*/
+@keyframes hueShift {
+    0% {
+      filter: hue-rotate(-20deg);
+    }
+    50% {
+      filter: hue-rotate(50deg);
+    }
+    100% {
+      filter: hue-rotate(-20deg);
+    }
+}
