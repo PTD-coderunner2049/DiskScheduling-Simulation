@@ -34,7 +34,7 @@ function runSimulation() {
     let mappedQueue = numberMapping(getQueue().value);//is an array
     //sort the array
     const fullArray = Array.from({ length: 200 }, (_, i) => i);
-    const selected15 = fullArray.sort(() => Math.random() - 0.5).slice(0, 15);
+    const selected15 = fullArray.sort(() => Math.random() - 0.5).slice(0, 25);
     const orderedTestArray = [...selected15].sort((a, b) => a - b);
     const shuffledTestArray = [...selected15].sort(() => Math.random() - 0.5);
     
@@ -139,6 +139,20 @@ function numberMapping(inputStr) {
     //map(Number) converts each string in the array to a number.
 }
 
+function injectSVG(simTable){
+    simTable = document.querySelector('#sim-table');
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        // Use actual body scroll size
+    svg.setAttribute("style",
+        `position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; z-index: 0;`
+    );
+    simTable.appendChild(svg);
+    return svg;
+}
 function injectSVG(){
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         // Use actual body scroll size
@@ -160,7 +174,6 @@ function injectSVG(){
     document.body.appendChild(svg);
     return svg;
 }
-
 function connectCell(svg) {
     let liveCells = document.querySelectorAll(".liveCell");
     if (liveCells.length < 2) return;
