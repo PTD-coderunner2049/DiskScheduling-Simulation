@@ -75,6 +75,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
 
     background: linear-gradient(to right,rgb(0, 247, 255) 10%,#eeff00 100%);
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
 
@@ -226,6 +227,7 @@ customizable sadly.*/
     min-width: 650px;
     max-width: 1800px;
     width: fit-content;
+    margin: 50px;
 
 }
 
