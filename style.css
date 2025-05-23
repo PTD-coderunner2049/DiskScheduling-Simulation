@@ -79,7 +79,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     -webkit-text-fill-color: transparent;
     /* color: transparent; */
 
-    animation: hueShift 10s linear infinite;
+    animation: hueShift 5s linear infinite;
     /* mix-blend-mode: color-dodge; */
 
     /*If I never been an artist, I would not discover this :*/
@@ -274,7 +274,7 @@ customizable sadly.*/
       filter: hue-rotate(-20deg);
     }
     50% {
-      filter: hue-rotate(130deg);
+      filter: hue-rotate(50deg);
     }
     100% {
       filter: hue-rotate(-20deg);
