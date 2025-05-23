@@ -6,6 +6,7 @@
     --theme-base-font: Consolas;
     --secondary-theme-font: ISOCTEUR;
     --stylized-head-font: Polya Regular;
+    --background-image: url('demo 6.jpg');
 }
 body {
     display: flex; /* specify flex type of box for body*/
@@ -23,7 +24,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     content: "";
     position: fixed; /*body is the largest div, so using absolute may cause ::before to not cover the whole website, and make the bg scaled down in resolution*/
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 100%), url('background.jpg');
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 100%), var(--background-image);
     
     background-repeat: no-repeat;
     background-position: top center;
@@ -32,8 +33,23 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     z-index: -1;
     /*z-index controls the stacking order of elements.
     Higher numbers appear on top, lower numbers appear underneath.*/
-    
+    /* filter: contrast(1);
+    animation: contrastShift 10s linear infinite; */
     animation: hueShift 10s linear infinite;
+}
+@keyframes contrastShift {
+    0% {
+        filter:
+            contrast(1);
+    }
+    50% {
+        filter:
+            contrast(1.1);
+    }
+    100% {
+        filter:
+            contrast(1);
+    } 
 }
 /*This is css for the intro box */
 /*------------------------------------------------------------------------------------------------------*/

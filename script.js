@@ -1,4 +1,10 @@
 /*--------------------------------------------------------------------------------------------*/
+//interface setup
+let pageStartUp = 1;
+const warningElements = document.querySelectorAll(".onscreen-warning-message");
+warningElements.forEach(element => {
+    element.style.opacity = "0";
+});
 //eventListeners setup
 console.log("D.S.A.S: Page enter function...");
 
@@ -8,9 +14,6 @@ window.addEventListener("load", () => {
     input.focus(); //default focused field
     console.log("D.S.A.S: Defaultly focused input field: Set.");
 });
-
-
-
 /*--------------------------------------------------------------------------------------------*/
 //auto stretch I/O request input
 const input = document.getElementById("IO-request-queue");
@@ -41,6 +44,12 @@ function runSimulation() {
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
     constructSimTable(sortedQueue, simulatedQueue, clearSimTable());
+    // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
+    if(pageStartUp === 1){
+        document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
+        console.log("D.S.A.S: Stretch web's height by 10%.");
+        pageStartUp = 2;
+    }
 }
 
 function constructSimTable(queue, simulatedQueue, simTable) {
