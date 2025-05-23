@@ -148,7 +148,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     user-select: none; /*un interactable*/
 }
 .onscreen-warning-message {
-    opacity: 0;
+    opacity: 1;
     color: var(--secondary-red);
 }
 
