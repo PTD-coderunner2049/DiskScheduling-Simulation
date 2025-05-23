@@ -56,16 +56,19 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
 
     /*border: 0;*/
     border-radius: 50px;
-    /* box-shadow: 0px -100px 400em rgb(0, 0, 0); */
+    box-shadow: 0px -100px 10em rgb(0, 0, 0, 0);
+    
     box-sizing: border-box; /* padding doesn't exceed width */
     background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
 
     /* transition: all 6s ease-in-out; */
     transition:
-        opacity 0.5s ease-in-out,
+        box-shadow 0.5s ease-in-out,
+        /* opacity 0.5s ease-in-out, */
         width 0.5s ease-in-out;
 }
 #intro-block:hover {
+    box-shadow: 0px -100px 10em rgb(0, 0, 0, 1);
     width: 90%;
     /* opacity: 1; */
 }
@@ -75,14 +78,14 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     font-family: Polya Regular;
     letter-spacing: 5px;
 
-    background: linear-gradient(to right,rgb(255, 123, 0) 10%,#eeff00 100%);
+    background: linear-gradient(to right,rgba(0, 255, 255) 100%, rgba(255, 0, 0)10%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     /* color: transparent; */
 
     user-select: none; /*un interactable*/
-    animation: hueShift 5s linear infinite;
+    animation: hueShift 10s linear infinite;
     /* mix-blend-mode: color-dodge; */
 
     /*If I never been an artist, I would not discover this :*/
@@ -92,6 +95,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
         font-size 0.5s ease-in-out,
         letter-spacing 0.5s ease-in-out;
 }
+
 #intro-block:hover #caption {
     font-size: 130px;
     transition-delay: 0.2s;
@@ -131,16 +135,20 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     
     user-select: none; /*un interactable*/
 }
-.onscreen-warning-message {
-    color: red;
-    font-size: 15;
+.onscreen-message {
     font-family: ISOCTEUR;
-    font-weight: bold;
-    z-index: 10;
+    /* font-weight: bold; */
+    color: white;
     
+    z-index: 10;
+
     margin: 15px auto 3px auto;
     user-select: none; /*un interactable*/
 }
+.onscreen-warning-message {
+    color: red;
+}
+
 /*------------------------------------------------------------------------------------------------------*/
 /*Radio algorithym styling, I will hid the original radio and use a label attached to each radio id
 then the label can act as click point for it and then style the label, radio seem tobe old and is not very
@@ -247,15 +255,17 @@ customizable sadly.*/
     margin: 0px 0px; /*allside*/
     padding: 5px;
     
+    border-radius: 20px;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.8);
+
     flex-direction: row;
 }
 .sim-header-row {
     /* border-width: 2px;
     border-style: solid;
-    border-color: white;
-    border-radius: 10px; */
-
+    border-color: white;*/
     border-bottom: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 .sim-table-cell {
     display: flex;
@@ -279,7 +289,7 @@ customizable sadly.*/
       filter: hue-rotate(-20deg);
     }
     50% {
-      filter: hue-rotate(50deg);
+      filter: hue-rotate(80deg);
     }
     100% {
       filter: hue-rotate(-20deg);
