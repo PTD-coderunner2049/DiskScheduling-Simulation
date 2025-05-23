@@ -144,10 +144,11 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     
     z-index: 10;
 
-    margin: 15px auto 3px auto;
+    margin: auto;
     user-select: none; /*un interactable*/
 }
 .onscreen-warning-message {
+    opacity: 0;
     color: var(--secondary-red);
 }
 
@@ -221,17 +222,29 @@ customizable sadly.*/
     font-family: var(--theme-base-font);
     
     color: white;
-
+    min-width: 200px;
+    width: fit-content;
     background: transparent;
 
-    margin: 15px;
+    outline: none; /* outline != border, it is use when input field is selected*/
+
+    margin: 0px;
     padding: 10px 20px;
     margin-bottom: 15px;
     
-    border-width: 2px;
+    border-width: 0px;
+    border-style: solid;
     border-color: red;
     border-radius: 25px;
 }
+.input-mirrorer {/*to measure stringlength from input, do the autostretch in javascript with this later*/
+    position: absolute;
+    visibility: hidden;
+    white-space: pre;
+    font-family: var(--theme-base-font);
+    font-size: inherit;
+    padding: 10px 20px;
+  }
 /*simulation table*/
 /*------------------------------------------------------------------------------------------------------*/
 #sim-table {

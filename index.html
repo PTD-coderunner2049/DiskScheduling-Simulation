@@ -18,18 +18,21 @@
             </h2>
         </h1>
         <div id="interface-block">
-
+            
             <div id="input-block">
                 <p id="interface-describe-message" class="onscreen-message">Please: prepare below fields for simulation</p>
                 
                 <p id="capacity-warning-message" class="onscreen-message onscreen-warning-message">capacity warning message</p>
                 <input id="disk-track-capacity" class="interface-input" type="text" placeholder="Disk's track capacity" spellcheck="false">
                 
-                <p id="head-describe-message" class="onscreen-message">Where the arm is reading is</p>
+                <p id="head-describe-message" class="onscreen-message">Read Arm's current posistion ↓</p>
+                <p id="queue-warning-message" class="onscreen-message onscreen-warning-message">head warning message</p>
                 <input id="initial-head" class="interface-input" type="text" placeholder="Previously replied Request" spellcheck="false">
                 
+                <p id="head-describe-message" class="onscreen-message">List of I/O requests, divided by white space ↓</p>
                 <p id="queue-warning-message" class="onscreen-message onscreen-warning-message">queue warning message</p>
                 <input id="IO-request-queue" class="interface-input" type="text" placeholder="I/O-request-queue" spellcheck="false">
+                <span id="input-mirrorer-01" class="input-mirrorer"></span>
             </div>
     
             <div id="algorithm-selector-radio-block">
@@ -56,7 +59,7 @@
         <!-- Footer with hoasen name-->
         <h6 id="intro-footer">
             <div>
-                @Ilovemilord - HoaSenUniversity - demo.commit.ver.0.1.23.cff2c82
+                @Ilovemilord - HoaSenUniversity - demo.commit.ver.0.1.23.e1c40e8
             </div>
         </h6>
     </div>
