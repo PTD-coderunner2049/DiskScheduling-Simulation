@@ -5,6 +5,9 @@ let pageStartUp = 1;
 // warningElements.forEach(element => {
 //     element.style.opacity = "0";
 // });
+clear(document.getElementById('capacity-warning-message'));
+clear(document.getElementById('head-warning-message'));
+clear(document.getElementById('queue-warning-message'));
 //eventListeners setup
 console.log("D.S.A.S: Page enter function...");
 
@@ -30,6 +33,10 @@ input.addEventListener("input", () => {
 // Simulation Functions
 // let ioQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 function runSimulation() {
+    //Validation
+    if (!validateInput()) {
+        return;
+    }
     //mapping the string
     let mappedQueue = numberMapping(getQueue().value);//is an array
     //sort the array
@@ -57,7 +64,45 @@ function runSimulation() {
         pageStartUp = 2;
     }
 }
+function validateInput() {
+    let isValid = true;
+    // Get input elements
+    const trackCapacityInput = document.getElementById('disk-track-capacity');
+    const initialHeadInput = document.getElementById('initial-head');
+    const requestQueueInput = document.getElementById('IO-request-queue');
 
+    // Get warning message elements
+    const capacityWarning = document.getElementById('capacity-warning-message');
+    const headWarning = document.getElementById('head-warning-message');
+    const queueWarning = document.getElementById('queue-warning-message');
+
+    //reset
+    clear(capacityWarning);
+    clear(headWarning);
+    clear(queueWarning);
+
+    // Check each input
+    if (trackCapacityInput.value.trim() === '') {
+        capacityWarning.textContent = 'Disk track capacity is required.';
+        isValid = false;
+    }
+
+    if (initialHeadInput.value.trim() === '') {
+        headWarning.textContent = 'Initial head position is required.';
+        isValid = false;
+    }
+
+    if (requestQueueInput.value.trim() === '') {
+        queueWarning.textContent = 'Request queue is required.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
+}
+function clear(obj) {
+    obj.textContent='';
+}
 function constructSimTable(sortedQueue, simulatedQueue, simTable) {
     let darkSpellCount = 0;
     let operationCount = 0;

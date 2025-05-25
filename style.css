@@ -172,7 +172,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     font-size: 15px;
     font-family: var(--theme-base-font);
     font-weight: bold;
-    opacity: 0;
+    opacity: 1;
     color: var(--secondary-red);
 }
 
