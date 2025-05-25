@@ -1,5 +1,9 @@
+/// <reference path="algorithm.js" />
+
 /*--------------------------------------------------------------------------------------------*/
 //interface setup
+let link = checkScriptLink();
+console.log(link);
 console.log("D.S.A.S: 🚧Page enter function...");
 // let pageStartUp = 1;
 // const warningElements = document.querySelectorAll(".onscreen-warning-message");
@@ -63,16 +67,20 @@ function runSimulation() {
     //sort the array
     const orderedQueue = [...mappedQueue].sort((a, b) => a - b);
     //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
-    //Run the simulator algorythm for a result array
-    let seektime = 10;//from the algorythm
-    const simulatedQueue = numberMapping(getQueue().value);////from the algorythm
+    //Run the simulator algorithm for a result array
+    let seektime = 10;//from the algorithm
+    const simulatedQueue = numberMapping(getQueue().value);////from the algorithm
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
     seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
     seektimeText.style.opacity = '1';
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
-    constructSimTable(orderedQueue, simulatedQueue, clearSimTable());//clean previous table aswell
+    
+    const safeOrderedQueue = sanitizeToNumberArray(orderedQueue);
+    const safeSimulatedQueue = sanitizeToNumberArray(simulatedQueue);
+
+    constructSimTable(safeOrderedQueue, safeSimulatedQueue, clearSimTable());//clean previous table aswell
     //draw connection, add an svg if not already exist.
     if (connectPermission){
         let svg = document.querySelectorAll("svg");
@@ -88,6 +96,12 @@ function runSimulation() {
     //     console.log("D.S.A.S: 🚧Stretch web's height by 10%.");
     //     pageStartUp = 2;
     // }
+}
+function sanitizeToNumberArray(arr) {// make absolutely sure they are array of numbers, javascript is shitty type.
+    if (!Array.isArray(arr)) return [];
+    return arr
+        .map(num => Number(num))
+        .filter(num => !isNaN(num)); // removes NaN
 }
 //random array of 25
 // const fullArray = Array.from({ length: 200 }, (_, i) => i);
@@ -181,6 +195,9 @@ function queueValidate(queue, message) {
             message.textContent = `Request ${val} exceeds disk capacity (${capacityVal})`;
             return setValidationStyle(queue, message, false);
         }
+    }
+    if (!mappedQueue.includes(Number(initialHeadInput.value))) {
+        message.textContent = 'The current queue is missing the head position, so it will be added automatically.';
     }
     return setValidationStyle(queue, message, true);
 }
@@ -401,4 +418,4 @@ function connectCell(svg) {
 }
 
 /*--------------------------------------------------------------------------------------------*/
-// Disk scheduling Algorythms
+// Disk scheduling algorithms
