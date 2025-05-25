@@ -3,9 +3,8 @@
     --primary-white: aliceblue;
     --secondary-orange: orangered;
     --secondary-red: crimson;
-    --valid-green: rgb(0, 255, 0);
+    --valid-color: rgb(0, 255, 255);
     --theme-base-font: Consolas;
-    --secondary-theme-font: Consolas;
     --stylized-head-font: Polya Regular;
     --background-image: url('demo 6 scaledown.jpg');
 }
@@ -157,7 +156,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     user-select: none; /*un interactable*/
 }
 .onscreen-message {
-    font-family: var(--secondary-theme-font);
+    font-family: var(--theme-base-font);
     /* font-weight: bold; */
     color: white;
     font-size: 15px;
@@ -177,7 +176,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     color: var(--secondary-red);
 }
 .onscreen-warning-message.valid {
-    color: var(--valid-green);
+    color: var(--valid-color);
     font-weight: 100;
 }
 .onscreen-warning-message.invalid {
@@ -216,7 +215,7 @@ customizable sadly.*/
     border-radius: 25px;
     border-width: 2px;
     border-style: solid;
-    border-color: white;
+    border-color: var(--primary-white);
     box-shadow: 0 0 10px rgba(0, 0, 0);
 
     user-select: none;
@@ -226,7 +225,7 @@ customizable sadly.*/
 }
 .algorithm-selector-label {
     padding: 10px 20px;
-    color: white;
+    color: var(--primary-white);
     background-color: rgba(255, 255, 255, 0);
     
     flex: 1 1 1;
@@ -234,10 +233,12 @@ customizable sadly.*/
     cursor: pointer; /*change cursor when hover*/
 
     transition: 
+        transform 0.2s ease-in-out,
         background-color 0.2s ease-in-out;
 }
 .algorithm-selector-label:hover {
     background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
 }
 /* .algorithm-selector-label:not(:last-of-type) {
     all but last one, then turn the left edge visible, last one already have its right edge using its mother container    
@@ -257,7 +258,7 @@ customizable sadly.*/
     text-align: center;
     font-family: var(--theme-base-font);
     
-    color: white;
+    color: var(--primary-white);
     min-width: 200px;
     width: fit-content;
     height: 25px;
@@ -266,7 +267,6 @@ customizable sadly.*/
     padding: 10px 20px;
     background: rgba(0, 255, 255, 0);
 
-
     outline: none; /* outline != border, it is use when input field is selected*/
 
     margin: 10px auto;
@@ -274,20 +274,22 @@ customizable sadly.*/
     
     border-width: 1px;
     border-style: solid;
-    border-color: red;
+    border-color: rgb(255, 255, 255);
     border-radius: 30px;
 
     transition: 
+        transform 0.2s ease-in-out,
         background 0.2s ease-in-out;
 }
 .interface-input:hover {
     background: rgba(0, 255, 255, 0.1);
+    transform: scale(1.1);
 }
 .interface-input.valid {
-    border-color: var(--valid-green);
+    border-color: var(--valid-color);
 }
 .interface-input.invalid {
-    border-color: var(--secondary-red);
+    /* border-color: var(--secondary-red); */
 }
 .input-mirrorer {/*to measure stringlength from input, do the autostretch in javascript with this later*/
     position: absolute;
@@ -296,6 +298,37 @@ customizable sadly.*/
     font-family: var(--theme-base-font);
     font-size: inherit;
     padding: 10px 20px;
+  }
+  #run-button {
+    text-align: center;
+    font-family: var(--stylized-head-font) !important;
+    color: var(--primary-white);
+    font-family: var(--theme-base-font);
+
+    min-width: 150px;
+    width: fit-content;
+    height: 50px;
+    font-size: 15px;
+
+    margin: 25px auto;
+    padding: 10px 20px;
+
+    background: black;
+    border-width: 3px;
+    border-style: solid;
+    border-color: whitesmoke;
+    border-radius: 40px;
+
+    transition: 
+        transform 1s ease-in-out,
+        all 0.2s ease-in-out;
+
+    cursor: pointer;
+  }
+  #run-button:hover {
+    color: black;
+    background-color: var(--primary-white);
+    transform: scale(1.1);
   }
 /*simulation table*/
 /*------------------------------------------------------------------------------------------------------*/
