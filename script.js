@@ -6,9 +6,9 @@ let pageStartUp = 1;
 // warningElements.forEach(element => {
 //     element.style.opacity = "0";
 // });
-const trackCapacityInput = document.getElementById('disk-track-capacity');
-const initialHeadInput = document.getElementById('initial-head');
-const requestQueueInput = document.getElementById('IO-request-queue');
+const trackCapacityInput = getCapacity();
+const initialHeadInput = getHead();
+const requestQueueInput = getQueue();
 
 clearAllMsg();
 
@@ -151,6 +151,12 @@ function headValidate(head, message) {
     }
     return setValidationStyle(head, message, true);
 }
+function queueValidate(params) {
+    let mappedQueue = numberMapping(getQueue().value);//is an array
+    mappedQueue.forEach(num => {
+        
+    });
+}
 function setValidationStyle(input, message, isValid) {
     const addedClass = isValid ? 'valid' : 'invalid';
     const removedClass = isValid ? 'invalid' : 'valid';
@@ -245,12 +251,16 @@ function clearSimTable() {
     }
     return simTable;
 }
-
+function getCapacity() {
+    return document.getElementById('disk-track-capacity');
+}
 function getQueue() {
     //looking for the I/O queue
     return document.querySelector('#IO-request-queue');
 }
-
+function getHead() {
+    return document.getElementById('initial-head');
+}
 function numberMapping(inputStr) {
     console.log("D.S.A.S: retriving I/O requests");
     let a = (inputStr.match(/\d+/g) || []).map(Number);
