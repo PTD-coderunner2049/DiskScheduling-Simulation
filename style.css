@@ -421,8 +421,8 @@ customizable sadly.*/
 }
 @keyframes svgLineFlow {
     0% {
-        stroke-dashoffset: 10;
-    }
+        stroke-dashoffset: 20;
+    }/*config was 5,5 so only 5 10 15 ... create a smooth loop, and got me the illution of flow*/
     100% {
         stroke-dashoffset: 0;
     }
