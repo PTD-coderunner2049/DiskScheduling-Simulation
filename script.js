@@ -58,20 +58,21 @@ function runSimulation() {
     }
     //mapping the string
     let mappedQueue = numberMapping(getQueue().value);//is an array
+    roundUp(mappedQueue);
+    removeDuplicates(mappedQueue);
     //sort the array
-    const orderedQeue = [...mappedQueue].sort((a, b) => a - b);
+    const orderedQueue = [...mappedQueue].sort((a, b) => a - b);
     //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorythm for a result array
     let seektime = 10;//from the algorythm
-    const simulatedQueue = orderedQeue;////from the algorythm
+    const simulatedQueue = numberMapping(getQueue().value);////from the algorythm
     //export seektime
-    
     const seektimeText = document.getElementById('table-describe-seek-time-message');
-    seektimeText.textContent += ` ${seektime}`;
+    seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
     seektimeText.style.opacity = '1';
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
-    constructSimTable(orderedQeue, simulatedQueue, clearSimTable());//clean previous table aswell
+    constructSimTable(orderedQueue, simulatedQueue, clearSimTable());//clean previous table aswell
     //draw connection, add an svg if not already exist.
     if (connectPermission){
         let svg = document.querySelectorAll("svg");
@@ -207,14 +208,36 @@ function clear(obj) {
     obj.textContent='';
     // console.log('🚧clearing: ' + obj.id);
 }
-function constructSimTable(sortedQueue, simulatedQueue, simTable) {
+function roundUp(queue) {
+    const cap = parseInt(getCapacity().value, 10);
+    if (!queue.includes(0)) {
+        queue.unshift(0);
+    }
+    if (!queue.includes(cap)) {
+        queue.push(cap);
+    }
+}
+function removeDuplicates(queue) {
+    const seen = new Set();
+    for (let i = queue.length - 1; i >= 0; i--) {
+        if (seen.has(queue[i])) {
+            queue.splice(i, 1); // remove duplicate
+        } else {
+            seen.add(queue[i]);
+        }
+    }
+}
+
+function constructSimTable(headQueue, simulatedQueue, simTable) {
+    console.log(headQueue);
+    console.log(simulatedQueue);
     let darkSpellCount = 0;
     let operationCount = 0;
     //add the header row for the table
     const headerRow = document.createElement('DIV');
     headerRow.className = "sim-row sim-header-row";
         //add the cell for the row
-    sortedQueue.forEach(nums => {//need to be replaced with a sorted queue
+    headQueue.forEach(nums => {//need to be replaced with a sorted queue
         const newCell = document.createElement('DIV');
         
         newCell.className = "sim-table-cell";
@@ -229,7 +252,7 @@ function constructSimTable(sortedQueue, simulatedQueue, simTable) {
     let i;
         //add row of cells for every values in simulated queue.
         simulatedQueue.forEach(nums => {
-        i = sortedQueue.indexOf(nums);
+        i = headQueue.indexOf(nums);
         console.log("DEBUG>>current cell is " + nums + " and its index:" + i);
         
         if(i === -1){
@@ -240,8 +263,8 @@ function constructSimTable(sortedQueue, simulatedQueue, simTable) {
 
         let newSimRow = document.createElement('DIV');
         newSimRow.className = "sim-row";
-        
-        for (let j = 0; j < simulatedQueue.length; j++) {
+        //add cells to each row of simulatedQueue.
+        for (let j = 0; j < headQueue.length; j++) {
             const newCell = document.createElement('DIV');
             newCell.className = "sim-table-cell";
             if(j === i) {
@@ -308,7 +331,7 @@ function getQueueMsg(){
 function numberMapping(inputStr) {
     console.log("D.S.A.S: retriving I/O requests");
     // let a = (inputStr.match(/\d+/g) || []).map(Number);
-    // console.log("mapped out: " + a);
+    // console.log("mapped out: " + a[0]);
     return (inputStr.match(/\d+/g) || []).map(Number);
     //inputStr.match(/\d+/g) extracts all digit sequences (like 12, 99, 5) from any messy string.
     //trim() removes leading and trailing whitespace.
