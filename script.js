@@ -87,13 +87,13 @@ function runSimulation() {
 // const selected = fullArray.sort(() => Math.random() - 0.5).slice(0, 25);
 function validateAllInputs() {
     //version 1
-    const trackCapacityInput = document.getElementById('disk-track-capacity');
-    const initialHeadInput = document.getElementById('initial-head');
-    const requestQueueInput = document.getElementById('IO-request-queue');
-
-    const capacityWarning = document.getElementById('capacity-warning-message');
-    const headWarning = document.getElementById('head-warning-message');
-    const queueWarning = document.getElementById('queue-warning-message');
+    const trackCapacityInput = getCapacity();
+    const initialHeadInput = getHead();
+    const requestQueueInput = getQueue();
+    
+    const capacityWarning = getCapacityMsg();
+    const headWarning = getHeadMsg();
+    const queueWarning = getQueueMsg();
 
     if (!validateInput(trackCapacityInput,capacityWarning) ||
         !validateInput(initialHeadInput, headWarning) ||
@@ -123,13 +123,16 @@ function validateInput(input, message){
     }
     
     if (input.id === 'disk-track-capacity') {
-        input.textContent = "Disk range: 0 - " + input.value;
+        console.log('Disk range: 0 - ' + input.value);
+        return setValidationStyle(input, message, true);
     }
     if (input.id === 'initial-head') {
         return headValidate(input, message);
     }
-    return setValidationStyle(input, message, true)
-    
+    if (input.id === 'IO-request-queue') {
+        return queueValidate(input, message);
+    }
+    return setValidationStyle(input, message, true);
 }
 function existInput(input, message) {
     clear(message);
@@ -141,9 +144,9 @@ function existInput(input, message) {
     return true;
 }
 function headValidate(head, message) {
-    let capacity = document.getElementById('disk-track-capacity');
     headVal = parseInt(head.value);
-    capacityVal = parseInt(capacity.value);
+    capacityVal = parseInt(getCapacity().value);
+
     if (headVal > capacityVal) {
         console.log('"Warning: ⚠️ Foreign Position detected! ⚠️"')
         message.textContent="Head position is foreign!"
@@ -151,12 +154,19 @@ function headValidate(head, message) {
     }
     return setValidationStyle(head, message, true);
 }
-function queueValidate(params) {
-    let mappedQueue = numberMapping(getQueue().value);//is an array
-    mappedQueue.forEach(num => {
-        
-    });
+function queueValidate(queue, message) {
+    let mappedQueue = numberMapping(queue.value);
+    const capacityVal = parseInt(getCapacity().value);
+
+    for (let val of mappedQueue) {
+        if (val > capacityVal) {
+            message.textContent = `Request ${val} exceeds disk capacity (${capacityVal})`;
+            return setValidationStyle(queue, message, false);
+        }
+    }
+    return setValidationStyle(queue, message, true);
 }
+
 function setValidationStyle(input, message, isValid) {
     const addedClass = isValid ? 'valid' : 'invalid';
     const removedClass = isValid ? 'invalid' : 'valid';
@@ -170,6 +180,7 @@ function setValidationStyle(input, message, isValid) {
     return isValid;
 }
 function clearAllMsg() {
+    console.log('🚧clearing all messages...');
     const warning = document.querySelectorAll('.onscreen-warning-message');
     warning.forEach(message => {
     clear(message);
@@ -177,7 +188,7 @@ function clearAllMsg() {
 }
 function clear(obj) {
     obj.textContent='';
-    console.log('🚧clearing: ' + obj.id);
+    // console.log('🚧clearing: ' + obj.id);
 }
 function constructSimTable(sortedQueue, simulatedQueue, simTable) {
     let darkSpellCount = 0;
@@ -261,10 +272,19 @@ function getQueue() {
 function getHead() {
     return document.getElementById('initial-head');
 }
+function getCapacityMsg() {
+    return document.getElementById('capacity-warning-message');
+}
+function getHeadMsg() {
+    return document.getElementById('head-warning-message');
+}
+function getQueueMsg(){
+    return document.getElementById('queue-warning-message');
+}
 function numberMapping(inputStr) {
     console.log("D.S.A.S: retriving I/O requests");
-    let a = (inputStr.match(/\d+/g) || []).map(Number);
-    console.log("DDDDDDDDDDDDDDDDDDDDDDDDDD: " + a);
+    // let a = (inputStr.match(/\d+/g) || []).map(Number);
+    // console.log("mapped out: " + a);
     return (inputStr.match(/\d+/g) || []).map(Number);
     //inputStr.match(/\d+/g) extracts all digit sequences (like 12, 99, 5) from any messy string.
     //trim() removes leading and trailing whitespace.
