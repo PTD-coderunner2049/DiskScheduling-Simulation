@@ -5,9 +5,31 @@ let pageStartUp = 1;
 // warningElements.forEach(element => {
 //     element.style.opacity = "0";
 // });
-clear(document.getElementById('capacity-warning-message'));
-clear(document.getElementById('head-warning-message'));
-clear(document.getElementById('queue-warning-message'));
+const trackCapacityInput = document.getElementById('disk-track-capacity');
+const initialHeadInput = document.getElementById('initial-head');
+const requestQueueInput = document.getElementById('IO-request-queue');
+
+const capacityWarning = document.getElementById('capacity-warning-message');
+const headWarning = document.getElementById('head-warning-message');
+const queueWarning = document.getElementById('queue-warning-message');
+
+clear(capacityWarning);
+clear(headWarning);
+clear(queueWarning);
+
+
+trackCapacityInput.addEventListener('input', function () {
+    // Replace anything that's not a digit (0–9) with an empty string
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+initialHeadInput.addEventListener('input', function () {
+    // Replace anything that's not a digit (0–9) with an empty string
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+requestQueueInput.addEventListener('input', function () {
+    // Replace anything that's not a digit (0–9) with an empty string
+    this.value = this.value.replace(/[^0-9, |+/.&()]/g, '');
+});
 //eventListeners setup
 console.log("D.S.A.S: Page enter function...");
 
@@ -33,8 +55,18 @@ input.addEventListener("input", () => {
 // Simulation Functions
 // let ioQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 function runSimulation() {
+    const trackCapacityInput = document.getElementById('disk-track-capacity');
+    const initialHeadInput = document.getElementById('initial-head');
+    const requestQueueInput = document.getElementById('IO-request-queue');
+
+    const capacityWarning = document.getElementById('capacity-warning-message');
+    const headWarning = document.getElementById('head-warning-message');
+    const queueWarning = document.getElementById('queue-warning-message');
     //Validation
-    if (!validateInput()) {
+    if (!validateInput(trackCapacityInput,capacityWarning) ||
+        !validateInput(initialHeadInput, headWarning) ||
+        !validateInput(requestQueueInput, queueWarning))
+    {
         return;
     }
     //mapping the string
@@ -64,40 +96,17 @@ function runSimulation() {
         pageStartUp = 2;
     }
 }
-function validateInput() {
-    let isValid = true;
-    // Get input elements
-    const trackCapacityInput = document.getElementById('disk-track-capacity');
-    const initialHeadInput = document.getElementById('initial-head');
-    const requestQueueInput = document.getElementById('IO-request-queue');
-
-    // Get warning message elements
-    const capacityWarning = document.getElementById('capacity-warning-message');
-    const headWarning = document.getElementById('head-warning-message');
-    const queueWarning = document.getElementById('queue-warning-message');
-
+function validateInput(input, message){
     //reset
-    clear(capacityWarning);
-    clear(headWarning);
-    clear(queueWarning);
-
+    clear(message);
     // Check each input
-    if (trackCapacityInput.value.trim() === '') {
-        capacityWarning.textContent = 'Disk track capacity is required.';
-        isValid = false;
+    if (input.value.trim() === '') {
+        message.textContent = 'Field is required.';
+        return false;
     }
-
-    if (initialHeadInput.value.trim() === '') {
-        headWarning.textContent = 'Initial head position is required.';
-        isValid = false;
-    }
-
-    if (requestQueueInput.value.trim() === '') {
-        queueWarning.textContent = 'Request queue is required.';
-        isValid = false;
-    }
-
-    if (!isValid) return; // Stop if validation fails
+    return true;
+}
+function existInput(input, message) {
 
 }
 function clear(obj) {
