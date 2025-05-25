@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------------------------*/
 //interface setup
 console.log("D.S.A.S: 🚧Page enter function...");
-let pageStartUp = 1;
+// let pageStartUp = 1;
 // const warningElements = document.querySelectorAll(".onscreen-warning-message");
 // warningElements.forEach(element => {
 //     element.style.opacity = "0";
@@ -63,9 +63,12 @@ function runSimulation() {
     const orderedQeue = [...mappedQueue].sort((a, b) => a - b);
     //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorithm for a result array
+    // Create an array of numbers from 0 to max
+
     const simulatedQueue = orderedQeue;//temporary
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
+    // console.log(orderedQeue);
     constructSimTable(orderedQeue, simulatedQueue, clearSimTable());//clean previous table aswell
     
     //draw connection, add an svg if not already exist.
@@ -76,11 +79,11 @@ function runSimulation() {
         connectCell(svg[0]);
     }
     // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
-    if(pageStartUp === 1){
-        document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
-        console.log("D.S.A.S: 🚧Stretch web's height by 10%.");
-        pageStartUp = 2;
-    }
+    // if(pageStartUp === 1){
+    //     document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
+    //     console.log("D.S.A.S: 🚧Stretch web's height by 10%.");
+    //     pageStartUp = 2;
+    // }
 }
 //random array of 25
 // const fullArray = Array.from({ length: 200 }, (_, i) => i);
@@ -156,6 +159,15 @@ function headValidate(head, message) {
 }
 function queueValidate(queue, message) {
     let mappedQueue = numberMapping(queue.value);
+    let msg = document.getElementById('queue-describe-message')
+    
+    if (mappedQueue.length > 25){
+        msg.textContent = 'Queue of 25+ lacking connections due to website limitation.';
+        msg.style.opacity = 1;
+    }
+    else {
+        msg.textContent = 'Queue of 25+ lacking connections due to website limitation.';
+    }
     const capacityVal = parseInt(getCapacity().value);
 
     for (let val of mappedQueue) {
@@ -203,10 +215,10 @@ function constructSimTable(sortedQueue, simulatedQueue, simTable) {
         newCell.className = "sim-table-cell";
         newCell.innerText = nums;
         newCell.style.height = "50px";
-        headerRow.appendChild(newCell);
+        addCell(headerRow, newCell);
         console.log("D.S.A.S: Building head cell...");
     });
-    simTable.appendChild(headerRow);//add it all at once
+    addRow(simTable, headerRow);//add it all at once
     console.log("D.S.A.S: Building head row...");
     //add the simulated rows
     let i;
@@ -234,10 +246,10 @@ function constructSimTable(sortedQueue, simulatedQueue, simTable) {
             if(i === -1) {
                 newCell.innerText = "✖️";//unwanted cell
             }
-            newSimRow.appendChild(newCell);
+            addCell(newSimRow, newCell);
             console.log("D.S.A.S: Building cell...");
         }
-        simTable.appendChild(newSimRow);
+        addRow(simTable, newSimRow);
         console.log("D.S.A.S: Building row...");
         operationCount++;
         //find where the cell should go accordingly to the table
@@ -245,11 +257,18 @@ function constructSimTable(sortedQueue, simulatedQueue, simTable) {
     console.log("D.S.A.S: Building simulation: completed.");
     console.log("DEADCELL Found: " + darkSpellCount + " during total of " + operationCount + " operations.");
 }
+function addRow(simTable, simRow) {
+    simTable.appendChild(simRow);
+    document.body.style.height = (document.body.offsetHeight + 50) + 'px';//add 50px
+}
+function addCell(simRow, newCell) {
+    simRow.appendChild(newCell);
+}
 function clearSimTable() {
     console.log("D.S.A.S: cleaning previous simulation...");
     // Remove all SVG elements (that contain drawed line :DD)
     document.querySelectorAll("line").forEach(line => line.remove());
-
+    document.body.style.height = '100vh';
     // Remove the entire sim-table element
     const simTable = document.querySelector('#sim-table');
     if (simTable) {
