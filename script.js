@@ -170,6 +170,7 @@ function queueValidate(queue, message) {
         connectPermission = false;
     }
     else {
+        msg.style.opacity = 0;
         connectPermission = true;
     }
     const capacityVal = parseInt(getCapacity().value);
