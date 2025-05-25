@@ -14,8 +14,8 @@ body {
     flex-direction: column;
     justify-content: flex-start; /* horizontally */
     align-items: center;  /* vertically */
-    /* min-height: 300vh; */
-    height: fit-content;
+    min-height: 100vh;
+    /* height: fit-content; */
     margin: 0;
     /*Cascadia Code, Polya Regular, Consolas, ISOCTEUR,, 'Courier New', Courier, monospace*/
     font-family: var(--theme-base-font);
