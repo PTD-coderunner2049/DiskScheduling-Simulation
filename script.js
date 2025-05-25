@@ -1,5 +1,6 @@
 /*--------------------------------------------------------------------------------------------*/
 //interface setup
+console.log("D.S.A.S: 🚧Page enter function...");
 let pageStartUp = 1;
 // const warningElements = document.querySelectorAll(".onscreen-warning-message");
 // warningElements.forEach(element => {
@@ -18,6 +19,13 @@ clear(headWarning);
 clear(queueWarning);
 
 
+/*--------------------------------------------------------------------------------------------*/
+//eventListeners setup
+window.addEventListener("load", () => {
+    const input = document.getElementById("disk-track-capacity");
+    input.focus(); //default focused field
+    console.log("D.S.A.S: Defaultly focused input field: Set.");
+});
 trackCapacityInput.addEventListener('input', function () {
     // Replace anything that's not a digit (0–9) with an empty string
     this.value = this.value.replace(/[^0-9]/g, '');
@@ -29,15 +37,6 @@ initialHeadInput.addEventListener('input', function () {
 requestQueueInput.addEventListener('input', function () {
     // Replace anything that's not a digit (0–9) with an empty string
     this.value = this.value.replace(/[^0-9, |+/.&()]/g, '');
-});
-//eventListeners setup
-console.log("D.S.A.S: Page enter function...");
-
-/*--------------------------------------------------------------------------------------------*/
-window.addEventListener("load", () => {
-    const input = document.getElementById("disk-track-capacity");
-    input.focus(); //default focused field
-    console.log("D.S.A.S: Defaultly focused input field: Set.");
 });
 /*--------------------------------------------------------------------------------------------*/
 //auto stretch I/O request input
@@ -92,7 +91,7 @@ function runSimulation() {
     // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
     if(pageStartUp === 1){
         document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
-        console.log("D.S.A.S: Stretch web's height by 10%.");
+        console.log("D.S.A.S: 🚧Stretch web's height by 10%.");
         pageStartUp = 2;
     }
 }
@@ -111,6 +110,7 @@ function existInput(input, message) {
 }
 function clear(obj) {
     obj.textContent='';
+    console.log('🚧clearing: ' + obj.id);
 }
 function constructSimTable(sortedQueue, simulatedQueue, simTable) {
     let darkSpellCount = 0;
@@ -214,6 +214,7 @@ function injectSVG(simTable){//inject to table
 }
 
 function injectSVG(){//inject to body
+    console.log('D.S.A.S: 🚧Attempt to inject an SVG...')
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         // Use actual body scroll size
     const pageWidth = Math.max(
@@ -236,6 +237,8 @@ function injectSVG(){//inject to body
 }
 
 function connectCell(svg) {
+    console.log('D.S.A.S: 🚧Attempt to draw conntions onto SVG...')
+
     let liveCells = document.querySelectorAll(".liveCell");
     if (liveCells.length < 2) return;
 
