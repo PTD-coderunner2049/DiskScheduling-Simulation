@@ -20,18 +20,18 @@
         <div id="interface-block">
             
             <div id="input-block">
-                <p id="interface-describe-message" class="onscreen-message">Please: prepare below fields for simulation</p>
+                <p id="interface-describe-message" class="onscreen-message">Please: prepare below fields for simulation!</p>
                 
-                <p id="capacity-warning-message" class="onscreen-message onscreen-warning-message">capacity warning message</p>
                 <input id="disk-track-capacity" class="interface-input" type="text" placeholder="Disk's track capacity" spellcheck="false">
+                <p id="capacity-warning-message" class="onscreen-message onscreen-warning-message">capacity warning message</p>
                 
-                <p id="head-describe-message" class="onscreen-message">Read Arm's current posistion ↓</p>
-                <p id="queue-warning-message" class="onscreen-message onscreen-warning-message">head warning message</p>
-                <input id="initial-head" class="interface-input" type="text" placeholder="Previously replied Request" spellcheck="false">
+                <!-- <p id="head-describe-message" class="onscreen-message">head-describe-message's current posistion ↓</p> -->
+                <input id="initial-head" class="interface-input" type="text" placeholder="Head posistion" spellcheck="false">
+                <p id="head-warning-message" class="onscreen-message onscreen-warning-message">head warning message</p>
                 
-                <p id="head-describe-message" class="onscreen-message">List of I/O requests, divided by white space ↓</p>
+                <input id="IO-request-queue" class="interface-input" type="text" placeholder="Request Queue" spellcheck="false">
                 <p id="queue-warning-message" class="onscreen-message onscreen-warning-message">queue warning message</p>
-                <input id="IO-request-queue" class="interface-input" type="text" placeholder="I/O-request-queue" spellcheck="false">
+                <p id="queue-describe-message" class="onscreen-message">Queue of 25+ lacking connections due to website limitation.</p>
                 <span id="input-mirrorer-01" class="input-mirrorer"></span>
             </div>
     
@@ -51,7 +51,6 @@
             </div>
 
             <div id="button-block">
-                <p id="?????????" class="onscreen-warning-message">message plot</p>
                 <button id="run-button"onclick="runSimulation()">Run simulation</button>
             </div>
             
@@ -59,7 +58,7 @@
         <!-- Footer with hoasen name-->
         <h6 id="intro-footer">
             <div>
-                @Ilovemilord - HoaSenUniversity - demo.commit.ver.0.1.23.e21e962
+                @Ilovemilord - HoaSenUniversity - demo.commit.ver.0.1.23.a8f18ca
             </div>
         </h6>
     </div>

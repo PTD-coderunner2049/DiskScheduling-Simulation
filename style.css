@@ -97,10 +97,11 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     font-family: var(--stylized-head-font);
     letter-spacing: 5px;
 
-    background: linear-gradient(to right,rgba(0, 255, 255) 100%, rgba(255, 0, 0)10%);
+    color: var(--primary-white);
+    /* background: linear-gradient(to right,rgba(0, 255, 255) 100%, rgba(255, 0, 0)10%);
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
     /* color: transparent; */
 
     user-select: none; /*un interactable*/
@@ -108,7 +109,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     /* mix-blend-mode: color-dodge; */
 
     /*If I never been an artist, I would not discover this :*/
-    text-shadow: 0px 0px 100px rgba(0, 217, 255, 0.5);
+    text-shadow: 0px 0px 100px rgba(255, 255, 255, 0.1);
 
     transition:
         font-size 0.5s ease-in-out,
@@ -161,10 +162,16 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     font-size: 18px;
     z-index: 10;
 
-    margin: auto;
+    opacity: 0;
+    margin: 0px;
     user-select: none; /*un interactable*/
+    transition: 
+        opacity 0.5s ease-in-out;
 }
 .onscreen-warning-message {
+    font-size: 15px;
+    font-family: var(--theme-base-font);
+    font-weight: bold;
     opacity: 1;
     color: var(--secondary-red);
 }
@@ -176,13 +183,13 @@ customizable sadly.*/
 #interface-block {
     text-align: center;
     align-self: center;
-    opacity: 0.2;
+    opacity: 1;
 
     width: fit-content;
     transition: 
         opacity 0.2s ease-in-out;
 }
-#intro-block:hover #interface-block {
+#intro-block:hover #interface-describe-message {
     opacity: 1;
 }
 #algorithm-selector-radio-block {
@@ -190,6 +197,7 @@ customizable sadly.*/
     /* text-align: center; */
     overflow: hidden;
     width: fit-content;
+    /* height: 35px; */
     /* opacity: 0.3; */
     margin: 50px auto 15px;
 
@@ -244,19 +252,22 @@ customizable sadly.*/
     color: white;
     min-width: 200px;
     width: fit-content;
+    height: 25px;
+    font-size: 15px;
+
+    padding: 10px 20px;
     background: rgba(0, 255, 255, 0);
 
 
     outline: none; /* outline != border, it is use when input field is selected*/
 
-    margin: 0px;
+    margin: 10px auto;
     padding: 10px 20px;
-    margin-bottom: 15px;
     
-    border-width: 0px;
+    border-width: 1px;
     border-style: solid;
     border-color: red;
-    border-radius: 25px;
+    border-radius: 30px;
 
     transition: 
         background 0.2s ease-in-out;
