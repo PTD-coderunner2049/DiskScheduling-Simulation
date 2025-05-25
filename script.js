@@ -67,7 +67,7 @@ function runSimulation() {
     const headQueue = [...mappedQueue].sort((a, b) => a - b);
     //[...mappedQueue] mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorithm for a result array
-    const simulatedQueue = numberMapping(getQueue().value);
+    const simulatedQueue = addHead(numberMapping(getQueue().value));
     let seektime = FCFS(simulatedQueue);
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
@@ -235,18 +235,21 @@ function addHead(queue) {
     if (!queue.includes(head)) {
         queue.unshift(head);
     }
+    return queue;
 }
 function addMin(queue) {
     const min = 0;
     if (!queue.includes(min)) {
         queue.unshift(min);
     }
+    return queue;
 }
 function addMax(queue) {
     const cap = Number(trackCapacityInput.value);
     if (!queue.includes(cap)) {
         queue.push(cap);
     }
+    return queue;
 }
 
 function removeDuplicates(queue) {
