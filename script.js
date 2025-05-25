@@ -70,7 +70,7 @@ function runSimulation() {
     //[...mappedQueue] mean create temporal copy (shallow copy) to use then discard it
     const simulatedQueue = addHead(numberMapping(getQueue().value));
     //Run the simulator algorithm for a result array and gather seektime
-    let seektime = algorithmsDriver(simulatedQueue);
+    let seektime = algorithmDriver(simulatedQueue);
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
     seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
@@ -98,10 +98,30 @@ function runSimulation() {
     //     pageStartUp = 2;
     // }
 }
-function algorithmsDriver(queue) {
+function algorithmDriver(queue) {
     const selectedAlgorithm = document.querySelector('input[name="algorithm-mode"]:checked').value;
-    if (selectedAlgorithm === 'FCFS') {
-        return FCFS(queue);
+
+    switch (selectedAlgorithm) {
+        case "FCFS":
+            console.log("⚠️Algorithm: First Come First Serve (→) selected");
+            return FCFS(queue);
+        case "SSTF":
+            console.log("⚠️Algorithm: Shortest Seek Time First (→←) selected");
+            break;
+        case "SCAN-up":
+            console.log("⚠️Algorithm: SCAN (↑) selected");
+            break;
+        case "SCAN-down":
+            console.log("⚠️Algorithm: SCAN (↓) selected");
+            break;
+        case "CSCAN-up":
+            console.log("⚠️Algorithm: Circle SCAN (↑) selected");
+            break;
+        case "CSCAN-down":
+            console.log("⚠️Algorithm: Circle SCAN (↓) selected");
+            break;
+        default:
+            console.log("⚠️Algorithm: Unknown algorithm selected, not sure how that happened, check Default selected in Script.js, line 10 - 20");
     }
 }
 function sanitizeToNumberArray(arr) {// make absolutely sure they are array of numbers, javascript is shitty type.
