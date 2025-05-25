@@ -395,6 +395,16 @@ customizable sadly.*/
     border-color: white;
     margin: 0;
 }
+.svg-simulated-line {
+    stroke: gold;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    opacity: 0.7;
+    stroke-dasharray: 5,5;
+
+    animation: svgLineFlow 0.5s linear infinite;
+}
+
 /*liveCell is cell that is selected by algorithm, configured and use in script file.
 /*Animation list*/
 /*------------------------------------------------------------------------------------------------------*/
@@ -407,5 +417,13 @@ customizable sadly.*/
     }
     100% {
       filter: hue-rotate(-20deg);
+    }
+}
+@keyframes svgLineFlow {
+    0% {
+        stroke-dashoffset: 10;
+    }
+    100% {
+        stroke-dashoffset: 0;
     }
 }

@@ -65,11 +65,11 @@ function runSimulation() {
     roundUp(mappedQueue);
     removeDuplicates(mappedQueue);
     //sort the array
-    const orderedQueue = [...mappedQueue].sort((a, b) => a - b);
+    const headQueue = [...mappedQueue].sort((a, b) => a - b);
     //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorithm for a result array
-    let seektime = 10;//from the algorithm
-    const simulatedQueue = numberMapping(getQueue().value);////from the algorithm
+    const simulatedQueue = numberMapping(getQueue().value);
+    let seektime = FCFS(simulatedQueue);
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
     seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
@@ -77,10 +77,10 @@ function runSimulation() {
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
     
-    const safeOrderedQueue = sanitizeToNumberArray(orderedQueue);
+    const safeHeadQueue = sanitizeToNumberArray(headQueue);
     const safeSimulatedQueue = sanitizeToNumberArray(simulatedQueue);
 
-    constructSimTable(safeOrderedQueue, safeSimulatedQueue, clearSimTable());//clean previous table aswell
+    constructSimTable(safeHeadQueue, safeSimulatedQueue, clearSimTable());//clean previous table aswell
     //draw connection, add an svg if not already exist.
     if (connectPermission){
         let svg = document.querySelectorAll("svg");
@@ -393,7 +393,6 @@ function injectSVG(){//inject to body
     document.body.appendChild(svg);
     return svg;
 }
-
 function connectCell(svg) {
     console.log('D.S.A.S: 🚧Attempt to draw conntions onto SVG...')
 
@@ -405,8 +404,7 @@ function connectCell(svg) {
         const r2 = liveCells[i].getBoundingClientRect();
 
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("stroke", "red");
-        line.setAttribute("stroke-width", "2");
+        line.classList.add("svg-simulated-line");
 
         line.setAttribute('x1', r1.left + r1.width / 2 + window.scrollX);
         line.setAttribute('y1', r1.top + r1.height / 2 + window.scrollY);
