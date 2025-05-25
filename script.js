@@ -10,13 +10,10 @@ const trackCapacityInput = document.getElementById('disk-track-capacity');
 const initialHeadInput = document.getElementById('initial-head');
 const requestQueueInput = document.getElementById('IO-request-queue');
 
-const capacityWarning = document.getElementById('capacity-warning-message');
-const headWarning = document.getElementById('head-warning-message');
-const queueWarning = document.getElementById('queue-warning-message');
-
-clear(capacityWarning);
-clear(headWarning);
-clear(queueWarning);
+const warning = document.querySelectorAll('.onscreen-warning-message');
+warning.forEach(message => {
+    clear(message);
+});
 
 
 /*--------------------------------------------------------------------------------------------*/
@@ -25,6 +22,10 @@ window.addEventListener("load", () => {
     const input = document.getElementById("disk-track-capacity");
     input.focus(); //default focused field
     console.log("D.S.A.S: Defaultly focused input field: Set.");
+});
+const inputs = document.querySelectorAll('.interface-input');
+inputs.forEach(input => {
+    input.addEventListener('input', validateAllInputs);
 });
 trackCapacityInput.addEventListener('input', function () {
     // Replace anything that's not a digit (0–9) with an empty string
@@ -54,18 +55,8 @@ input.addEventListener("input", () => {
 // Simulation Functions
 // let ioQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 function runSimulation() {
-    const trackCapacityInput = document.getElementById('disk-track-capacity');
-    const initialHeadInput = document.getElementById('initial-head');
-    const requestQueueInput = document.getElementById('IO-request-queue');
-
-    const capacityWarning = document.getElementById('capacity-warning-message');
-    const headWarning = document.getElementById('head-warning-message');
-    const queueWarning = document.getElementById('queue-warning-message');
     //Validation
-    if (!validateInput(trackCapacityInput,capacityWarning) ||
-        !validateInput(initialHeadInput, headWarning) ||
-        !validateInput(requestQueueInput, queueWarning))
-    {
+    if(!validateAllInputs()){
         return;
     }
     //mapping the string
@@ -78,6 +69,8 @@ function runSimulation() {
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
     constructSimTable(orderedQeue, simulatedQueue, clearSimTable());//clean previous table aswell
+    
+    //draw connection, add an svg if not already exist.
     let svg = document.querySelectorAll("svg");
     if(svg.length === 0){
         connectCell(injectSVG());
@@ -94,8 +87,54 @@ function runSimulation() {
 //random array of 25
 // const fullArray = Array.from({ length: 200 }, (_, i) => i);
 // const selected = fullArray.sort(() => Math.random() - 0.5).slice(0, 25);
+function validateAllInputs() {
+    //version 1
+    const trackCapacityInput = document.getElementById('disk-track-capacity');
+    const initialHeadInput = document.getElementById('initial-head');
+    const requestQueueInput = document.getElementById('IO-request-queue');
+
+    const capacityWarning = document.getElementById('capacity-warning-message');
+    const headWarning = document.getElementById('head-warning-message');
+    const queueWarning = document.getElementById('queue-warning-message');
+
+    if (!validateInput(trackCapacityInput,capacityWarning) ||
+        !validateInput(initialHeadInput, headWarning) ||
+        !validateInput(requestQueueInput, queueWarning))
+    {
+        return false;
+    }
+    return true;
+
+    //version 2
+    // const inputs = document.querySelectorAll('.interface-input');
+    // const warnings = document.querySelectorAll('.onscreen-warning-message');
+    
+    // let status = true;
+    // inputs.forEach((input, index) => {
+    //     if (!validateInput(input, warnings[index])) {
+    //         status = false;
+    //     }
+    // });
+    // if (!status) {
+    //     return;
+    // }
+}
 function validateInput(input, message){
-    //reset
+    if (!existInput(input, message)) {
+        return setValidationStyle(input, message, false)
+    }
+    
+    if (input.id === 'disk-track-capacity') {
+        input.textContent = "Disk range: 0 - " + input.value;
+    }
+    if (input.id === 'initial-head') {
+        return headValidate(input, message);
+    }
+    clear
+    return setValidationStyle(input, message, true)
+    
+}
+function existInput(input, message) {
     clear(message);
     // Check each input
     if (input.value.trim() === '') {
@@ -104,9 +143,30 @@ function validateInput(input, message){
     }
     return true;
 }
-function existInput(input, message) {
-
+function headValidate(head, message) {
+    let capacity = document.getElementById('disk-track-capacity');
+    headVal = parseInt(head.value);
+    capacityVal = parseInt(capacity.value);
+    if (headVal > capacityVal) {
+        console.log('"Warning: ⚠️ Foreign Position detected! ⚠️"')
+        message.textContent="Head position is foreign!"
+        return setValidationStyle(head, message, false)
+    }
+    return setValidationStyle(head, message, true);
 }
+function setValidationStyle(input, message, isValid) {
+    const addedClass = isValid ? 'valid' : 'invalid';
+    const removedClass = isValid ? 'invalid' : 'valid';
+
+    input.classList.add(addedClass);
+    input.classList.remove(removedClass);
+
+    message.classList.add(addedClass);
+    message.classList.remove(removedClass);
+
+    return isValid;
+}
+
 function clear(obj) {
     obj.textContent='';
     console.log('🚧clearing: ' + obj.id);

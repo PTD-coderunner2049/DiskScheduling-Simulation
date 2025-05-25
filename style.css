@@ -3,6 +3,7 @@
     --primary-white: aliceblue;
     --secondary-orange: orangered;
     --secondary-red: crimson;
+    --valid-green: rgb(0, 255, 0);
     --theme-base-font: Consolas;
     --secondary-theme-font: Consolas;
     --stylized-head-font: Polya Regular;
@@ -159,7 +160,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     font-family: var(--secondary-theme-font);
     /* font-weight: bold; */
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     z-index: 10;
 
     opacity: 0;
@@ -171,11 +172,18 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
 .onscreen-warning-message {
     font-size: 15px;
     font-family: var(--theme-base-font);
-    font-weight: bold;
+    
     opacity: 1;
     color: var(--secondary-red);
 }
-
+.onscreen-warning-message.valid {
+    color: var(--valid-green);
+    font-weight: 100;
+}
+.onscreen-warning-message.invalid {
+    color: var(--secondary-red);
+    font-weight: bold;
+}
 /*------------------------------------------------------------------------------------------------------*/
 /*Radio algorithym styling, I will hid the original radio and use a label attached to each radio id
 then the label can act as click point for it and then style the label, radio seem tobe old and is not very
@@ -274,6 +282,12 @@ customizable sadly.*/
 }
 .interface-input:hover {
     background: rgba(0, 255, 255, 0.1);
+}
+.interface-input.valid {
+    border-color: var(--valid-green);
+}
+.interface-input.invalid {
+    border-color: var(--secondary-red);
 }
 .input-mirrorer {/*to measure stringlength from input, do the autostretch in javascript with this later*/
     position: absolute;
