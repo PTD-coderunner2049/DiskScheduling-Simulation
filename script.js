@@ -71,17 +71,13 @@ function runSimulation() {
     //mapping the string
     let mappedQueue = numberMapping(getQueue().value);//is an array
     //sort the array
-    const fullArray = Array.from({ length: 200 }, (_, i) => i);
-    const selected15 = fullArray.sort(() => Math.random() - 0.5).slice(0, 27);
-    const orderedTestArray = [...selected15].sort((a, b) => a - b);
-    const shuffledTestArray = [...selected15].sort(() => Math.random() - 0.5);
-    
-    let sortedQueue = orderedTestArray;//temporary
+    const orderedQeue = [...mappedQueue].sort((a, b) => a - b);
+    //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorithm for a result array
-    const simulatedQueue = shuffledTestArray;//temporary
+    const simulatedQueue = orderedQeue;//temporary
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
-    constructSimTable(sortedQueue, simulatedQueue, clearSimTable());//clean previous table aswell
+    constructSimTable(orderedQeue, simulatedQueue, clearSimTable());//clean previous table aswell
     let svg = document.querySelectorAll("svg");
     if(svg.length === 0){
         connectCell(injectSVG());
@@ -95,6 +91,9 @@ function runSimulation() {
         pageStartUp = 2;
     }
 }
+//random array of 25
+// const fullArray = Array.from({ length: 200 }, (_, i) => i);
+// const selected = fullArray.sort(() => Math.random() - 0.5).slice(0, 25);
 function validateInput(input, message){
     //reset
     clear(message);
