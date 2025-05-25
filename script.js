@@ -52,6 +52,7 @@ input.addEventListener("input", () => {
 /*--------------------------------------------------------------------------------------------*/
 // Simulation Functions
 // let ioQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let connectPermission = true;
 function runSimulation() {
     //Validation
     if(!validateAllInputs()){
@@ -72,11 +73,13 @@ function runSimulation() {
     constructSimTable(orderedQeue, simulatedQueue, clearSimTable());//clean previous table aswell
     
     //draw connection, add an svg if not already exist.
-    let svg = document.querySelectorAll("svg");
-    if(svg.length === 0){
-        connectCell(injectSVG());
-    }else{
-        connectCell(svg[0]);
+    if (connectPermission){
+        let svg = document.querySelectorAll("svg");
+        if(svg.length === 0){
+            connectCell(injectSVG());
+        }else{
+            connectCell(svg[0]);
+        }
     }
     // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
     // if(pageStartUp === 1){
@@ -164,9 +167,10 @@ function queueValidate(queue, message) {
     if (mappedQueue.length > 25){
         msg.textContent = 'Queue of 25+ lacking connections due to website limitation.';
         msg.style.opacity = 1;
+        connectPermission = false;
     }
     else {
-        msg.textContent = 'Queue of 25+ lacking connections due to website limitation.';
+        connectPermission = true;
     }
     const capacityVal = parseInt(getCapacity().value);
 
