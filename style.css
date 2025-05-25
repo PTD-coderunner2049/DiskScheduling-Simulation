@@ -246,7 +246,8 @@ customizable sadly.*/
 } */
 .algorithm-selector-radio:checked + .algorithm-selector-label {
     /*select label of the checked radio*/
-    background-color: rgba(4, 179, 185, 0.5);
+    background-color: var(--primary-white);
+    color: black;
     font-weight: bold;
 }
 .algorithm-selector-radio:not(:checked) + .algorithm-selector-label {
