@@ -192,7 +192,10 @@ function getQueue() {
 
 function numberMapping(inputStr) {
     console.log("D.S.A.S: retriving I/O requests");
-    return inputStr.trim().split(/\s+/).map(Number);
+    let a = (inputStr.match(/\d+/g) || []).map(Number);
+    console.log("DDDDDDDDDDDDDDDDDDDDDDDDDD: " + a);
+    return (inputStr.match(/\d+/g) || []).map(Number);
+    //inputStr.match(/\d+/g) extracts all digit sequences (like 12, 99, 5) from any messy string.
     //trim() removes leading and trailing whitespace.
     //split(/\s+/) splits the string on one or more whitespace characters.
     //map(Number) converts each string in the array to a number.
