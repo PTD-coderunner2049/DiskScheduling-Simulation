@@ -10,9 +10,7 @@ const trackCapacityInput = getCapacity();
 const initialHeadInput = getHead();
 const requestQueueInput = getQueue();
 
-clearAllMsg();
-
-
+clearAllWarnMsg();
 /*--------------------------------------------------------------------------------------------*/
 //eventListeners setup
 window.addEventListener("load", () => {
@@ -22,7 +20,7 @@ window.addEventListener("load", () => {
 });
 const inputs = document.querySelectorAll('.interface-input');
 inputs.forEach(input => {
-    input.addEventListener('input', clearAllMsg);
+    input.addEventListener('input', clearAllWarnMsg);
     input.addEventListener('input', validateAllInputs);
 });
 trackCapacityInput.addEventListener('input', function () {
@@ -63,15 +61,17 @@ function runSimulation() {
     //sort the array
     const orderedQeue = [...mappedQueue].sort((a, b) => a - b);
     //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
-    //Run the simulator algorithm for a result array
-    // Create an array of numbers from 0 to max
-
-    const simulatedQueue = orderedQeue;//temporary
+    //Run the simulator algorythm for a result array
+    let seektime = 10;//from the algorythm
+    const simulatedQueue = orderedQeue;////from the algorythm
+    //export seektime
+    
+    const seektimeText = document.getElementById('table-describe-seek-time-message');
+    seektimeText.textContent += ` ${seektime}`;
+    seektimeText.style.opacity = '1';
     //Build simulation
     console.log("D.S.A.S: Simulation process commited.");
-    // console.log(orderedQeue);
     constructSimTable(orderedQeue, simulatedQueue, clearSimTable());//clean previous table aswell
-    
     //draw connection, add an svg if not already exist.
     if (connectPermission){
         let svg = document.querySelectorAll("svg");
@@ -196,7 +196,7 @@ function setValidationStyle(input, message, isValid) {
 
     return isValid;
 }
-function clearAllMsg() {
+function clearAllWarnMsg() {
     console.log('🚧clearing all messages...');
     const warning = document.querySelectorAll('.onscreen-warning-message');
     warning.forEach(message => {
