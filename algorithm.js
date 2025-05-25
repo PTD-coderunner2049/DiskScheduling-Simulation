@@ -15,43 +15,37 @@ function FCFS(queue) { // array of numbers
 }
 
 function SSTF(queue) {
-    const numericQueue = queue.map(Number); // Convert all values to numbers
-    const closest = [];
+    let workQueue = queue.map(Number); // Ensure all elements are numbers
+    let current = workQueue.shift();   // Start from the first request
+    let seekTime = 0;
+    const resultOrder = [];
+    resultOrder.unshift(current);
 
-    // Clone the numericQueue to a working copy we will mutate
-    let workQueue = [...numericQueue];
-
-    // Start from the first element (or pick a custom head if desired)
-    let current = workQueue.shift(); // pick and remove the first element
-    workQueue.unshift(current);
     while (workQueue.length > 0) {
-        let minGap = Infinity;
-        let nextIndex = -1;
+        // Find the index of the request with the shortest seek time
+        let closestIndex = 0;
+        let minGap = Math.abs(current - workQueue[0]);
 
-        for (let i = 0; i < workQueue.length; i++) {
+        for (let i = 1; i < workQueue.length; i++) {
             const gap = Math.abs(current - workQueue[i]);
             if (gap < minGap) {
                 minGap = gap;
-                nextIndex = i;
+                closestIndex = i;
             }
         }
 
-        const next = workQueue.splice(nextIndex, 1)[0]; // Remove and get next
-        closest.push({ current, closest: next });
-        current = next; // Update current to continue
-    }
-    // Count seektime
-    let seekTime = 0;
-    for (let i = 0; i < closest.length; i++) {
-        const a = Number(closest[i].current);
-        const b = Number(closest[i].closest);
-        seekTime += Math.abs(a - b);
+        const next = workQueue.splice(closestIndex, 1)[0];
+        seekTime += Math.abs(current - next);
+        resultOrder.push(next);
+        current = next;
     }
 
-    // Overwrite original queue with result (as objects showing movement)
-    queue.length = 0; // Clear original queue
-    queue.push(...closest.map(pair => pair.closest)); // Replace with final order if desired
-    return seekTime; // Always return true
+    // Update original queue to reflect the new order
+    queue.length = 0;
+    queue.push(...resultOrder);
+
+    return seekTime;
 }
+
 
 
