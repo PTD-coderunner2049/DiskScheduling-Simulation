@@ -65,7 +65,7 @@ function runSimulation() {
     //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorythm for a result array
     let seektime = 10;//from the algorythm
-    const simulatedQueue = orderedQueue;////from the algorythm
+    const simulatedQueue = numberMapping(getQueue().value);////from the algorythm
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
     seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
@@ -229,6 +229,8 @@ function removeDuplicates(queue) {
 }
 
 function constructSimTable(headQueue, simulatedQueue, simTable) {
+    console.log(headQueue);
+    console.log(simulatedQueue);
     let darkSpellCount = 0;
     let operationCount = 0;
     //add the header row for the table
@@ -261,8 +263,8 @@ function constructSimTable(headQueue, simulatedQueue, simTable) {
 
         let newSimRow = document.createElement('DIV');
         newSimRow.className = "sim-row";
-        
-        for (let j = 0; j < simulatedQueue.length; j++) {
+        //add cells to each row of simulatedQueue.
+        for (let j = 0; j < headQueue.length; j++) {
             const newCell = document.createElement('DIV');
             newCell.className = "sim-table-cell";
             if(j === i) {
