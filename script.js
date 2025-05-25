@@ -62,13 +62,12 @@ function runSimulation() {
     }
     //mapping the string
     let mappedQueue = numberMapping(getQueue().value);//is an array
-    roundUp(mappedQueue);
+    touchUp(mappedQueue); //add min max and head
     removeDuplicates(mappedQueue);
-    //sort the array
     const headQueue = [...mappedQueue].sort((a, b) => a - b);
-    //...mappedQueue mean create temporal copy (shallow copy) to use then discard it
+    //[...mappedQueue] mean create temporal copy (shallow copy) to use then discard it
     //Run the simulator algorithm for a result array
-    const simulatedQueue = numberMapping(getQueue().value);
+    const simulatedQueue = addHead(numberMapping(getQueue().value));
     let seektime = FCFS(simulatedQueue);
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
@@ -225,15 +224,34 @@ function clear(obj) {
     obj.textContent='';
     // console.log('🚧clearing: ' + obj.id);
 }
-function roundUp(queue) {
-    const cap = parseInt(getCapacity().value, 10);
-    if (!queue.includes(0)) {
-        queue.unshift(0);
+
+function touchUp(queue) {
+    addHead(queue);
+    addMin(queue);
+    addMax(queue);
+}
+function addHead(queue) {
+    const head = Number(initialHeadInput.value);
+    if (!queue.includes(head)) {
+        queue.unshift(head);
     }
+    return queue;
+}
+function addMin(queue) {
+    const min = 0;
+    if (!queue.includes(min)) {
+        queue.unshift(min);
+    }
+    return queue;
+}
+function addMax(queue) {
+    const cap = Number(trackCapacityInput.value);
     if (!queue.includes(cap)) {
         queue.push(cap);
     }
+    return queue;
 }
+
 function removeDuplicates(queue) {
     const seen = new Set();
     for (let i = queue.length - 1; i >= 0; i--) {
