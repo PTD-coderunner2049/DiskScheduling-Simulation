@@ -1,10 +1,10 @@
 /*--------------------------------------------------------------------------------------------*/
 //interface setup
 let pageStartUp = 1;
-const warningElements = document.querySelectorAll(".onscreen-warning-message");
-warningElements.forEach(element => {
-    element.style.opacity = "0";
-});
+// const warningElements = document.querySelectorAll(".onscreen-warning-message");
+// warningElements.forEach(element => {
+//     element.style.opacity = "0";
+// });
 //eventListeners setup
 console.log("D.S.A.S: Page enter function...");
 
@@ -34,7 +34,7 @@ function runSimulation() {
     let mappedQueue = numberMapping(getQueue().value);//is an array
     //sort the array
     const fullArray = Array.from({ length: 200 }, (_, i) => i);
-    const selected15 = fullArray.sort(() => Math.random() - 0.5).slice(0, 25);
+    const selected15 = fullArray.sort(() => Math.random() - 0.5).slice(0, 27);
     const orderedTestArray = [...selected15].sort((a, b) => a - b);
     const shuffledTestArray = [...selected15].sort(() => Math.random() - 0.5);
     

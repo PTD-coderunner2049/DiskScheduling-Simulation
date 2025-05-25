@@ -163,16 +163,16 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     z-index: 10;
 
     opacity: 0;
-    margin: auto;
+    margin: 0px;
     user-select: none; /*un interactable*/
     transition: 
-        opacity 1s ease-in-out;
+        opacity 0.5s ease-in-out;
 }
 .onscreen-warning-message {
     font-size: 15px;
     font-family: var(--theme-base-font);
     font-weight: bold;
-    opacity: 1;
+    opacity: 0;
     color: var(--secondary-red);
 }
 
@@ -253,6 +253,7 @@ customizable sadly.*/
     min-width: 200px;
     width: fit-content;
     height: 25px;
+    font-size: 15px;
 
     padding: 10px 20px;
     background: rgba(0, 255, 255, 0);
