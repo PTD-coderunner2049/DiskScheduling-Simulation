@@ -107,7 +107,7 @@ function algorithmDriver(queue) {
             return FCFS(queue);
         case "SSTF":
             console.log("⚠️Algorithm: Shortest Seek Time First (→←) selected");
-            break;
+            return SSTF(queue);
         case "SCAN-up":
             console.log("⚠️Algorithm: SCAN (↑) selected");
             break;
