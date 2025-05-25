@@ -15,6 +15,8 @@ const initialHeadInput = getHead();
 const requestQueueInput = getQueue();
 
 clearAllWarnMsg();
+
+document.getElementById("FCFS").checked = true;
 /*--------------------------------------------------------------------------------------------*/
 //eventListeners setup
 window.addEventListener("load", () => {
@@ -66,9 +68,9 @@ function runSimulation() {
     removeDuplicates(mappedQueue);
     const headQueue = [...mappedQueue].sort((a, b) => a - b);
     //[...mappedQueue] mean create temporal copy (shallow copy) to use then discard it
-    //Run the simulator algorithm for a result array
     const simulatedQueue = addHead(numberMapping(getQueue().value));
-    let seektime = FCFS(simulatedQueue);
+    //Run the simulator algorithm for a result array and gather seektime
+    let seektime = algorithmsDriver(simulatedQueue);
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
     seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
@@ -95,6 +97,12 @@ function runSimulation() {
     //     console.log("D.S.A.S: 🚧Stretch web's height by 10%.");
     //     pageStartUp = 2;
     // }
+}
+function algorithmsDriver(queue) {
+    const selectedAlgorithm = document.querySelector('input[name="algorithm-mode"]:checked').value;
+    if (selectedAlgorithm === 'FCFS') {
+        return FCFS(queue);
+    }
 }
 function sanitizeToNumberArray(arr) {// make absolutely sure they are array of numbers, javascript is shitty type.
     if (!Array.isArray(arr)) return [];
