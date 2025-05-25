@@ -10,10 +10,7 @@ const trackCapacityInput = document.getElementById('disk-track-capacity');
 const initialHeadInput = document.getElementById('initial-head');
 const requestQueueInput = document.getElementById('IO-request-queue');
 
-const warning = document.querySelectorAll('.onscreen-warning-message');
-warning.forEach(message => {
-    clear(message);
-});
+clearAllMsg();
 
 
 /*--------------------------------------------------------------------------------------------*/
@@ -25,6 +22,7 @@ window.addEventListener("load", () => {
 });
 const inputs = document.querySelectorAll('.interface-input');
 inputs.forEach(input => {
+    input.addEventListener('input', clearAllMsg);
     input.addEventListener('input', validateAllInputs);
 });
 trackCapacityInput.addEventListener('input', function () {
@@ -130,7 +128,6 @@ function validateInput(input, message){
     if (input.id === 'initial-head') {
         return headValidate(input, message);
     }
-    clear
     return setValidationStyle(input, message, true)
     
 }
@@ -166,7 +163,12 @@ function setValidationStyle(input, message, isValid) {
 
     return isValid;
 }
-
+function clearAllMsg() {
+    const warning = document.querySelectorAll('.onscreen-warning-message');
+    warning.forEach(message => {
+    clear(message);
+    });
+}
 function clear(obj) {
     obj.textContent='';
     console.log('🚧clearing: ' + obj.id);
