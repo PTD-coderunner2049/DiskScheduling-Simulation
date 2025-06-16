@@ -25,7 +25,7 @@ body::before {/*shading bg, if doing this indside body, it affect other elements
     position: fixed; /*body is the largest div, so using absolute may cause ::before to not cover the whole website, and make the bg scaled down in resolution*/
     top: 0; left: 0; right: 0; bottom: 0;
     /* background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 100%), var(--background-image); */
-    background: linear-gradient(to bottom left, rgb(0, 20, 65), rgb(0, 0, 0));
+    background: linear-gradient(to bottom left, rgb(0, 59, 94), rgb(0, 0, 0));
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
