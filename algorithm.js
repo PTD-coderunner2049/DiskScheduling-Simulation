@@ -3,6 +3,9 @@ function checkScriptLink() {
 }
 
 function FCFS(queue) { // array of numbers
+    addHead(queue);
+    console.log(queue);
+
     if (queue.length < 2) {
         return 0;
     }
@@ -15,11 +18,14 @@ function FCFS(queue) { // array of numbers
 }
 
 function SSTF(queue) {
+    addHead(queue);
+    console.log(queue);
+
     let workQueue = queue.map(Number); // Ensure all elements are numbers
-    let current = workQueue.shift();   // Start from the first request
     let seekTime = 0;
-    const resultOrder = [];
-    resultOrder.unshift(current);
+
+    let current = getHead().value;  //got the head for starting point :)
+    let resultOrder = [];
 
     while (workQueue.length > 0) {
         // Find the index of the request with the shortest seek time
@@ -39,7 +45,6 @@ function SSTF(queue) {
         resultOrder.push(next);
         current = next;
     }
-
     // Update original queue to reflect the new order
     queue.length = 0;
     queue.push(...resultOrder);
@@ -47,5 +52,52 @@ function SSTF(queue) {
     return seekTime;
 }
 
+function SCAN(queue, isUp) {
+    console.log("origin ↓");
+    console.log(queue);
+    touchUp(queue);
+    removeDuplicates(queue);
+    console.log("touched-up↓");
+    console.log(queue);
 
+    let workQueue = queue.map(Number); // Ensure all elements are numbers
+    let seekTime = 0;
 
+    let current = Number(getHead().value); //got the head for starting point :)
+    let resultOrder = [];
+    resultOrder.push(current); //or unshift, whaever...
+    
+    workQueue = workQueue.sort((a, b) => a - b);
+    console.log("sorted ↓");
+    console.log(workQueue);
+    
+    const start = workQueue.indexOf(current);
+    
+    switch (isUp) {
+        case true:
+            for (let i = start+1; i < workQueue.length; i++) {
+                resultOrder.push(workQueue[i]);
+            }
+            for (let i = start-1; i >= 0; i--) {
+                resultOrder.push(workQueue[i]);
+            }
+            break; 
+        case false:
+            for (let i = start-1; i >= 0; i--) {
+                resultOrder.push(workQueue[i]);
+            }
+            for (let i = start+1; i < workQueue.length; i++) {
+                resultOrder.push(workQueue[i]);
+            }
+            break;
+        default:
+            break;
+    }
+    console.log(resultOrder);
+    // Update original queue to reflect the new order
+    queue.length = 0;
+    queue.push(...resultOrder);
+
+    return seekTime;
+    
+}

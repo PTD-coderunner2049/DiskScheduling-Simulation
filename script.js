@@ -68,9 +68,11 @@ function runSimulation() {
     removeDuplicates(mappedQueue);
     const headQueue = [...mappedQueue].sort((a, b) => a - b);
     //[...mappedQueue] mean create temporal copy (shallow copy) to use then discard it
-    const simulatedQueue = addHead(numberMapping(getQueue().value));
+    const simulatedQueue = numberMapping(getQueue().value);
     //Run the simulator algorithm for a result array and gather seektime
+    console.log(simulatedQueue + '-BEFORE');
     let seektime = algorithmDriver(simulatedQueue);
+    console.log(simulatedQueue + '-AFTER');
     //export seektime
     const seektimeText = document.getElementById('table-describe-seek-time-message');
     seektimeText.textContent = 'Seek Time Accumulated: ' + seektime;
@@ -110,10 +112,10 @@ function algorithmDriver(queue) {
             return SSTF(queue);
         case "SCAN-up":
             console.log("⚠️Algorithm: SCAN (↑) selected");
-            break;
+            return SCAN(queue, true);
         case "SCAN-down":
             console.log("⚠️Algorithm: SCAN (↓) selected");
-            break;
+            return SCAN(queue, false);
         case "CSCAN-up":
             console.log("⚠️Algorithm: Circle SCAN (↑) selected");
             break;
@@ -254,16 +256,9 @@ function clear(obj) {
 }
 
 function touchUp(queue) {
-    addHead(queue);
+    addHead(queue); //must be first so algo like scan know if head is needed to be add by viewing original queue before adding min max
     addMin(queue);
     addMax(queue);
-}
-function addHead(queue) {
-    const head = Number(initialHeadInput.value);
-    if (!queue.includes(head)) {
-        queue.unshift(head);
-    }
-    return queue;
 }
 function addMin(queue) {
     const min = 0;
@@ -279,7 +274,13 @@ function addMax(queue) {
     }
     return queue;
 }
-
+function addHead(queue) {
+    const head = Number(initialHeadInput.value);
+if (!queue.includes(head) || queue.indexOf(head) > 0) {
+    queue.unshift(head);
+}    //Head is needed to be always at start, so the logic here have a little bit more to it
+return queue;
+}
 function removeDuplicates(queue) {
     const seen = new Set();
     for (let i = queue.length - 1; i >= 0; i--) {
