@@ -113,3 +113,64 @@ function SCAN(queue, isUp) {
 
     return seekTime;
 }
+function CSCAN(queue, isUp) {
+    console.log("origin ↓");
+    console.log(queue);
+    touchUp(queue);
+    removeDuplicates(queue);
+    console.log("touched-up↓");
+    console.log(queue);
+
+    let workQueue = queue.map(Number); // Ensure all elements are numbers
+    let seekTime = 0;
+
+    let current = Number(getHead().value); //got the head for starting point :)
+    let resultOrder = [];
+    resultOrder.push(current); //or unshift, whaever...
+    
+    workQueue = workQueue.sort((a, b) => a - b);
+    console.log("sorted ↓");
+    console.log(workQueue);
+    
+    const start = workQueue.indexOf(current);
+    
+    let last = current;
+    switch (isUp) {
+        case true:
+            for (let i = start + 1; i < workQueue.length; i++) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
+                resultOrder.push(workQueue[i]);
+            }
+            for (let i = 0; i < start; i++) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
+                resultOrder.push(workQueue[i]);
+            }
+            break; 
+        case false:
+            for (let i = start - 1; i >= 0; i--) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
+                resultOrder.push(workQueue[i]);
+            }
+            for (let i = workQueue.length - 1; i > start; i--) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
+                resultOrder.push(workQueue[i]);
+            }
+            break;
+        default:
+            break;
+    }
+    console.log(resultOrder);
+    // Update original queue to reflect the new order
+    queue.length = 0;
+    queue.push(...resultOrder);
+
+    return seekTime;
+}
