@@ -73,20 +73,33 @@ function SCAN(queue, isUp) {
     
     const start = workQueue.indexOf(current);
     
+    let last = current;
     switch (isUp) {
         case true:
             for (let i = start+1; i < workQueue.length; i++) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
                 resultOrder.push(workQueue[i]);
             }
             for (let i = start-1; i >= 0; i--) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
                 resultOrder.push(workQueue[i]);
             }
             break; 
         case false:
             for (let i = start-1; i >= 0; i--) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
                 resultOrder.push(workQueue[i]);
             }
             for (let i = start+1; i < workQueue.length; i++) {
+                const next = workQueue[i];
+                seekTime += Math.abs(next - last);
+                last = next;
                 resultOrder.push(workQueue[i]);
             }
             break;
@@ -99,5 +112,4 @@ function SCAN(queue, isUp) {
     queue.push(...resultOrder);
 
     return seekTime;
-    
 }

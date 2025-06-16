@@ -118,10 +118,10 @@ function algorithmDriver(queue) {
             return SCAN(queue, false);
         case "CSCAN-up":
             console.log("⚠️Algorithm: Circle SCAN (↑) selected");
-            break;
+            return CSCAN(queue, true);
         case "CSCAN-down":
             console.log("⚠️Algorithm: Circle SCAN (↓) selected");
-            break;
+            return CSCAN(queue, false);
         default:
             console.log("⚠️Algorithm: Unknown algorithm selected, not sure how that happened, check Default selected in Script.js, line 10 - 20");
     }
