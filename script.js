@@ -13,10 +13,14 @@ console.log("D.S.A.S: 🚧Page enter function...");
 const trackCapacityInput = getCapacity();
 const initialHeadInput = getHead();
 const requestQueueInput = getQueue();
+const runButton = document.getElementById('run-button'); // <--- ADD THIS LINE
 
 clearAllWarnMsg();
 
 document.getElementById("FCFS").checked = true;
+
+validateAllInputs();
+toggleRunButton();
 /*--------------------------------------------------------------------------------------------*/
 //eventListeners setup
 window.addEventListener("load", () => {
@@ -28,18 +32,25 @@ const inputs = document.querySelectorAll('.interface-input');
 inputs.forEach(input => {
     input.addEventListener('input', clearAllWarnMsg);
     input.addEventListener('input', validateAllInputs);
+    input.addEventListener('input', toggleRunButton);
 });
 trackCapacityInput.addEventListener('input', function () {
     // Replace anything that's not a digit (0–9) with an empty string
     this.value = this.value.replace(/[^0-9]/g, '');
+    validateAllInputs();
+    toggleRunButton();
 });
 initialHeadInput.addEventListener('input', function () {
     // Replace anything that's not a digit (0–9) with an empty string
     this.value = this.value.replace(/[^0-9]/g, '');
+    validateAllInputs();
+    toggleRunButton();
 });
 requestQueueInput.addEventListener('input', function () {
     // Replace anything that's not a digit (0–9) with an empty string
     this.value = this.value.replace(/[^0-9, |+/.&()]/g, '');
+    validateAllInputs();
+    toggleRunButton();
 });
 /*--------------------------------------------------------------------------------------------*/
 //auto stretch I/O request input
@@ -58,10 +69,6 @@ input.addEventListener("input", () => {
 // let ioQueue = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let connectPermission = true;
 function runSimulation() {
-    //Validation
-    if(!validateAllInputs()){
-        return;
-    }
     //mapping the string
     let mappedQueue = numberMapping(getQueue().value);//is an array
     touchUp(mappedQueue); //add min max and head
@@ -241,6 +248,22 @@ function setValidationStyle(input, message, isValid) {
     message.classList.remove(removedClass);
 
     return isValid;
+}
+function toggleRunButton() {
+    const isValid = validateAllInputs(); // Re-run validation to get the current state
+    if (isValid) {
+        runButton.removeAttribute('disabled');
+        runButton.style.opacity = '1'; // Or whatever style indicates it's active
+        runButton.style.cursor = 'pointer'; // Restore default cursor for clickable element
+        runButton.style.userSelect = 'auto'; // Restore default user-select
+        console.log("D.S.A.S: Run button enabled.");
+    } else {
+        runButton.setAttribute('disabled', 'true');
+        runButton.style.opacity = '0.5'; // Or whatever style indicates it's disabled
+        runButton.style.cursor = 'not-allowed'; // Indicate it's not clickable
+        runButton.style.userSelect = 'none'; // Prevent text selection/interaction
+        console.log("D.S.A.S: Run button disabled.");
+    }
 }
 function clearAllWarnMsg() {
     console.log('🚧clearing all messages...');
