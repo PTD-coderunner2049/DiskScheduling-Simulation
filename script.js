@@ -94,7 +94,7 @@ function runSimulation() {
         }
     }
     // extend web height, in case of small simulation so it have chance to sit in the middle instead of bottom.
-    // if(pageStartUp === 1){
+    // if(pageStartUp === 1) {
     //     document.body.style.height = (document.body.offsetHeight * 1.1) + 'px';
     //     console.log("D.S.A.S: 🚧Stretch web's height by 10%.");
     //     pageStartUp = 2;
@@ -171,7 +171,6 @@ function validateInput(input, message){
     if (!existInput(input, message)) {
         return setValidationStyle(input, message, false)
     }
-    
     if (input.id === 'disk-track-capacity') {
         console.log('Disk range: 0 - ' + input.value);
         return setValidationStyle(input, message, true);

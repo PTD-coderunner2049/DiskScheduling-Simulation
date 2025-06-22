@@ -8,6 +8,7 @@
     --stylized-head-font: Arial, Polya Regular;
     --background-image: url('demo 6 scaledown.jpg');
 }
+
 body {
     display: flex; /* specify flex type of box for body*/
     flex-direction: column;
